@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name:       Fast Social Media AI Poster
- * Description:       A WordPress plugin that generates custom social media posts for products by analyzing them with AI.
+ * Plugin Name:       Fast WordPress Media Cleaner
+ * Description:      A WordPress plugin that efficiently marks your unused media files for deletion.
  * Version:           1.0.0
  * Author:            Tareq Monower
  * Author URI:        https://profiles.wordpress.org/tamimh/
@@ -16,39 +16,39 @@ if (!defined('WPINC')) {
     die;
 }
 
-define('FAST_SOCIAL_MEDIA_AI_POSTER_VERSION', '1.0.0');
+define('FAST_WORDPRESS_MEDIA_CLEANER_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
  */
-function fast_social_media_ai_poster_activate()
+function fast_wordpress_media_cleaner_activate()
 {
     // Require the activator class file
-    require_once plugin_dir_path(__FILE__) . 'includes/class-social-media-ai-poster-activator.php';
+    require_once plugin_dir_path(__FILE__) . 'includes/class-fast-wordpress-media-cleaner-activator.php';
     // Activate the plugin
-    Fast_Social_Media_Ai_Poster_Activator::activate();
+    Fast_Wordpress_Media_Cleaner_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  */
-function fast_social_media_ai_poster_deactivate()
+function fast_wordpress_media_cleaner_deactivate()
 {
     // Require the deactivator class file
-    require_once plugin_dir_path(__FILE__) . 'includes/class-social-media-ai-poster-deactivator.php';
+    require_once plugin_dir_path(__FILE__) . 'includes/class-fast-wordpress-media-cleaner-deactivator.php';
     // Deactivate the plugin
-    Fast_Social_Media_Ai_Poster_Deactivator::deactivate();
+    Fast_Wordpress_Media_Cleaner_Deactivator::deactivate();
 }
 
 // Register the activation and deactivation hooks
-register_activation_hook(__FILE__, 'fast_social_media_ai_poster_activate');
-register_deactivation_hook(__FILE__, 'fast_social_media_ai_poster_deactivate');
+register_activation_hook(__FILE__, 'fast_wordpress_media_cleaner_activate');
+register_deactivation_hook(__FILE__, 'fast_wordpress_media_cleaner_deactivate');
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-social-media-ai-poster-main.php';
+require plugin_dir_path(__FILE__) . 'includes/class-fast-wordpress-media-cleaner-main.php';
 
 /**
  * Begins execution of the plugin.
@@ -57,12 +57,12 @@ require plugin_dir_path(__FILE__) . 'includes/class-social-media-ai-poster-main.
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  */
-function run_fast_social_media_ai_poster()
+function run_fast_wordpress_media_cleaner()
 {
-    // Create an instance of the Fast_Auto_Order_Complete class
-    $plugin = new Fast_Social_Media_Ai_Poster();
+    // Create an instance of the Fast_Wordpress_Media_Cleaner class
+    $plugin = new Fast_Wordpress_Media_Cleaner_Wordpress_Plugin();
     // Run the plugin
     $plugin->run();
 }
 // Start the plugin
-run_fast_social_media_ai_poster();
+run_fast_wordpress_media_cleaner();

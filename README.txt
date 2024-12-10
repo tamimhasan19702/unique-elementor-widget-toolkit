@@ -1,52 +1,52 @@
-=== Fast Social Media AI Poster ===
+=== Fast WordPress Media Cleaner ===
 Contributors: tamimh
-Tags: social-media, auto-poster, ai, wordpress, woocommerce
+Tags: wordpress, media-cleaner, unused-media, wordpress-plugin
 Requires at least: 6.0
 Tested up to: 6.7
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A lightweight WordPress plugin that analyzes your content and generates custom social media posts with relevant hashtags for various platforms.
+A lightweight WordPress plugin that helps you identify and delete unused media files in your WordPress directory.
 
 == Description ==
-Fast Social Media AI Poster is a WordPress plugin that automatically analyzes your WooCommerce product posts and generates engaging social media posts for platforms like Twitter and Facebook. It creates tailored content along with relevant hashtags, and can schedule these posts for optimal engagement.
+Fast WordPress Media Cleaner is a WordPress plugin that scans your WordPress directory for unused media files and helps you delete them. It's a simple and efficient way to clean up your WordPress installation and free up disk space.
 
 == Installation ==
 
-1. Upload `fast-social-media-ai-poster.php` to the `/wp-content/plugins/` directory.
+1. Upload `fast-wordpress-media-cleaner.php` to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Configure the plugin settings as needed.
 
 == Configuration ==
 
-To enable the auto-post feature for each individual product:
+To use the plugin, follow these steps:
 
-1. Go to **Products > All Products** in WooCommerce.
-2. For each product, click **Edit**.
-3. In the product edit page, navigate to the **Social Media** tab.
-4. Check the "Enable Auto-Post" checkbox to allow automatic posting for that product.
+1. Go to **Media > Unused Media** in WordPress.
+2. The plugin will scan your WordPress directory for unused media files.
+3. Review the list of unused media files and select the ones you want to delete.
+4. Click the "Delete" button to delete the selected files.
 
-> *Note:* Each product requires this checkbox to be selected individually to activate the auto-post feature. This is the only functionality offered by the plugin; there are no additional settings pages or configuration options.
+> *Note:* Be careful when deleting files, as this action is permanent and cannot be undone.
 
 == Frequently Asked Questions ==
 
 = What is the purpose of this plugin? =
-This plugin analyzes your WooCommerce product content and generates custom social media posts with relevant hashtags, allowing for automated posting to various platforms.
+This plugin helps you identify and delete unused media files in your WordPress directory, freeing up disk space and keeping your WordPress installation clean.
 
-= How do I enable the auto-post feature for each product? =
-To enable auto-post for a product, go to **Products > All Products**, edit the product, navigate to the **Social Media** tab, and check the "Enable Auto-Post" checkbox.
+= How do I use the plugin? =
+To use the plugin, go to **Media > Unused Media** in WordPress, review the list of unused media files, select the ones you want to delete, and click the "Delete" button.
 
 == Screenshots ==
 
-1. Screenshot of the auto-post checkbox on the product page
+1. Screenshot of the unused media files list
 
 == Changelog ==
 
 = 1.0.0 =
 * Initial release of the plugin
-* Added functionality to analyze WooCommerce product posts and generate custom social media posts with hashtags
-* Enabled scheduling of posts for optimal engagement
+* Added functionality to scan WordPress directory for unused media files
+* Added functionality to delete selected unused media files
 
 == Upgrade Notice ==
 
@@ -55,12 +55,10 @@ Initial release of the plugin.
 
 == Arbitrary section ==
 
-This plugin uses the following hooks and filters to modify WooCommerce behavior:
+This plugin uses the following hooks and filters to modify WordPress behavior:
 
-* `woocommerce_product_options_general_product_data`
-* `woocommerce_process_product_meta`
 * `wp_insert_post`
-* `wp_schedule_event`
+* `wp_delete_attachment`
 
 These hooks and filters can be customized if needed.
 
@@ -68,19 +66,14 @@ These hooks and filters can be customized if needed.
 
 Ordered list:
 
-1. Analyze WooCommerce product posts for social media.
-2. Generate custom social media posts with relevant hashtags.
-3. Schedule posts for optimal engagement.
+1. Scan WordPress directory for unused media files.
+2. Review the list of unused media files.
+3. Delete selected unused media files.
 
 Unordered list:
 
 * Easy to use and configure
-* Compatible with WooCommerce 3.0.1 and later
-* Automatically generates engaging content for social media
+* Compatible with WordPress 6.0 and later
+* Helps keep your WordPress installation clean and organized
 
-Here's a link to [WooCommerce](https://woocommerce.com/ "Your favorite e-commerce plugin") and one to [WordPress](http://wordpress.org/ "Your favorite software").
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+Here's a link to [WordPress](http://wordpress.org/ "Your favorite software").

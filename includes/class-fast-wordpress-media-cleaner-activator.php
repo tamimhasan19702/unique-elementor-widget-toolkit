@@ -1,6 +1,5 @@
 <?php
-
-class Fast_Social_Media_AI_Poster_Activator
+class Fast_Wordpress_Media_Cleaner_Activator
 {
     public static function activate()
     {

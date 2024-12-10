@@ -1,6 +1,5 @@
 <?php
-
-class Fast_Social_Media_AI_Poster_Deactivator
+class Fast_Wordpress_Media_Cleaner_Deactivator
 {
     public static function deactivate()
     {
