@@ -50,6 +50,42 @@ register_deactivation_hook(__FILE__, 'fast_wordpress_media_cleaner_deactivate');
  */
 require plugin_dir_path(__FILE__) . 'includes/class-fast-wordpress-media-cleaner-main.php';
 
+
+
+
+function enqueue_admin_assets($hook)
+{
+    // Enqueue styles in the WordPress admin menus
+    if (in_array($hook, array('upload.php', 'media.php'))) {
+        wp_enqueue_style(
+            'fast-media-cleaner-style',
+            plugin_dir_url(__FILE__) . 'assets/css/style.css',
+            [],
+            '1.0.0'
+        );
+    }
+
+    // Enqueue scripts
+    wp_enqueue_script(
+        'fast-media-cleaner-script',
+        plugin_dir_url(__FILE__) . 'assets/js/script.js',
+        ['jquery'],
+        '1.0.0',
+        true
+    );
+
+    // Pass admin-ajax URL and nonce to script
+    wp_localize_script('fast-media-cleaner-script', 'fastMediaCleaner', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'mark_unused_nonce' => wp_create_nonce('mark_unused_images'),
+        'remove_marks_nonce' => wp_create_nonce('remove_marks'),
+    ]);
+}
+
+add_action('admin_enqueue_scripts', 'enqueue_admin_assets');
+
+
+
 /**
  * Begins execution of the plugin.
  *
