@@ -25,8 +25,6 @@ class Fast_Wordpress_Media_Cleaner_Wordpress_Plugin
         include_once(dirname(__FILE__, 2) . '/assets/view/media-buttons.php');
 
 
-
-
     }
 
     // Ensure buttons only appear in the Media Library
@@ -38,4 +36,9 @@ class Fast_Wordpress_Media_Cleaner_Wordpress_Plugin
         }
     }
 
+
+    public function mark_unused_attachments()
+    {
+
+    }
 }
