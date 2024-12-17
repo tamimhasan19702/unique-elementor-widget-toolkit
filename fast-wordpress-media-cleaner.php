@@ -79,6 +79,7 @@ function enqueue_admin_assets($hook)
         'ajax_url' => admin_url('admin-ajax.php'),
         'mark_unused_nonce' => wp_create_nonce('mark_unused_images'),
         'remove_marks_nonce' => wp_create_nonce('remove_marks'),
+        'nonce' => wp_create_nonce('media_cleaner_nonce'),
     ]);
 }
 
