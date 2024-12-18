@@ -81,6 +81,8 @@ function enqueue_admin_assets($hook)
         'remove_marks_nonce' => wp_create_nonce('remove_marks'),
         'nonce' => wp_create_nonce('media_cleaner_nonce'),
     ]);
+
+  
 }
 
 add_action('admin_enqueue_scripts', 'enqueue_admin_assets');

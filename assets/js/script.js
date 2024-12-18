@@ -1,27 +1,48 @@
 /** @format */
+/** @format */
 
 jQuery(document).ready(function ($) {
-  $("#show-unused-media-button").on("click", function (event) {
-    // Prevent the default action (which may cause a page refresh)
-    event.preventDefault();
+  $("#mark-unused-images-button").on("click", function () {
+    const button = $(this);
+    button.prop("disabled", true).text("Processing...");
 
-    // Create a form to submit
-    var form = $("<form>", {
-      method: "POST",
-      action: window.location.href, // Submit to the current page
+    $.ajax({
+      url: ajaxurl, // This should be defined in your PHP code using wp_localize_script
+      type: "POST",
+      dataType: "json",
+      data: {
+        action: "mark_unused_images", // The action name that corresponds to your PHP function
+        security: "<?php echo wp_create_nonce('mark_unused_images_action'); ?>", // Security nonce
+      },
+      success: function (response) {
+        if (response.success) {
+          // Alert the unused image IDs
+          alert(
+            "Unused Image IDs: " + response.data.unused_image_ids.join(", ")
+          );
+
+          // Optionally, you can also alert the counts
+          alert(
+            response.data.message +
+              "\nUsed Images: " +
+              response.data.used_count +
+              "\nUnused Images: " +
+              response.data.unused_count
+          );
+
+          // Reload the page if needed
+          // location.reload();
+        } else {
+          alert("Error: " + response.data.message);
+        }
+        button.prop("disabled", false).text("Mark Unused Images");
+      },
+      error: function () {
+        alert(
+          "An error occurred while processing. Please check the console for details."
+        );
+        button.prop("disabled", false).text("Mark Unused Images");
+      },
     });
-
-    // Add a hidden input to indicate the request
-    form.append(
-      $("<input>", {
-        type: "hidden",
-        name: "show_unused_media",
-        value: "1",
-      })
-    );
-
-    // Append the form to the body and submit it
-    $("body").append(form);
-    form.submit();
   });
 });
