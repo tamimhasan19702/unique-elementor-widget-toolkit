@@ -1,5 +1,5 @@
 <?php
-class Fast_Wordpress_Media_Cleaner_Activator
+class USWTK_Activator
 {
     public static function activate()
     {

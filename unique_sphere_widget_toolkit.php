@@ -12,97 +12,178 @@
  * Elementor Pro tested up to: 3.5.0
  */
 
-// If this file is called directly, abort.
-if (!defined('WPINC')) {
-    die;
-}
-
-define('FAST_WORDPRESS_MEDIA_CLEANER_VERSION', '1.0.0');
+ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * The code that runs during plugin activation.
- */
-function fast_wordpress_media_cleaner_activate()
-{
-    // Require the activator class file
-    require_once plugin_dir_path(__FILE__) . 'includes/class-fast-wordpress-media-cleaner-activator.php';
-    // Activate the plugin
-    Fast_Wordpress_Media_Cleaner_Activator::activate();
-}
-
-/**
- * The code that runs during plugin deactivation.
- */
-function fast_wordpress_media_cleaner_deactivate()
-{
-    // Require the deactivator class file
-    require_once plugin_dir_path(__FILE__) . 'includes/class-fast-wordpress-media-cleaner-deactivator.php';
-    // Deactivate the plugin
-    Fast_Wordpress_Media_Cleaner_Deactivator::deactivate();
-}
-
-// Register the activation and deactivation hooks
-register_activation_hook(__FILE__, 'fast_wordpress_media_cleaner_activate');
-register_deactivation_hook(__FILE__, 'fast_wordpress_media_cleaner_deactivate');
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path(__FILE__) . 'includes/class-fast-wordpress-media-cleaner-main.php';
-
-
-
-
-function enqueue_admin_assets($hook)
-{
-    // Enqueue styles in the WordPress admin menus
-    if (in_array($hook, array('upload.php', 'media.php'))) {
-        wp_enqueue_style(
-            'fast-media-cleaner-style',
-            plugin_dir_url(__FILE__) . 'assets/css/style.css',
-            [],
-            '1.0.0'
-        );
-    }
-
-    // Enqueue scripts
-    wp_enqueue_script(
-        'fast-media-cleaner-script',
-        plugin_dir_url(__FILE__) . 'assets/js/script.js',
-        ['jquery'],
-        '1.0.0',
-        true
-    );
-
-    // Pass admin-ajax URL and nonce to script
-    wp_localize_script('fast-media-cleaner-script', 'fastMediaCleaner', [
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'mark_unused_nonce' => wp_create_nonce('mark_unused_images'),
-        'remove_marks_nonce' => wp_create_nonce('remove_marks'),
-        'nonce' => wp_create_nonce('media_cleaner_nonce'),
-    ]);
-
-  
-}
-
-add_action('admin_enqueue_scripts', 'enqueue_admin_assets');
-
-
-
-/**
- * Begins execution of the plugin.
+ * Main Unique Sphere Class
  *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
+ * The init class that runs the Unique Sphere plugin.
+ * Intended to make sure that the plugin's minimum requirements are met.
+ *
+ * @since 1.0.0
  */
-function run_fast_wordpress_media_cleaner()
-{
-    // Create an instance of the Fast_Wordpress_Media_Cleaner class
-    $plugin = new Fast_Wordpress_Media_Cleaner_Wordpress_Plugin();
-    // Run the plugin
-    $plugin->run();
+final class Unique_Sphere_Elementor {
+
+	/**
+	 * Plugin Version
+	 *
+	 * @since 1.0.0
+	 * @var string The plugin version.
+	 */
+	const VERSION = '1.0.0';
+
+	/**
+	 * Minimum Elementor Version
+	 *
+	 * @since 1.0.0
+	 * @var string Minimum Elementor version required to run the plugin.
+	 */
+	const MINIMUM_ELEMENTOR_VERSION = '3.0.0';
+
+	/**
+	 * Minimum PHP Version
+	 *
+	 * @since 1.0.0
+	 * @var string Minimum PHP version required to run the plugin.
+	 */
+	const MINIMUM_PHP_VERSION = '7.0';
+
+	/**
+	 * Constructor
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function __construct() {
+		// Init Plugin
+		add_action( 'plugins_loaded', array( $this, 'init' ) );
+	}
+
+	/**
+	 * Initialize the plugin
+	 *
+	 * Validates that Elementor is already loaded.
+	 * Checks for basic plugin requirements.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function init() {
+		// Check if Elementor installed and activated
+		if ( ! did_action( 'elementor/loaded' ) ) {
+			add_action( 'admin_notices', array( $this, 'admin_notice_missing_main_plugin' ) );
+			return;
+		}
+
+		// Check for required Elementor version
+		if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
+			add_action( 'admin_notices', array( $this, 'admin_notice_minimum_elementor_version' ) );
+			return;
+		}
+
+		// Check for required PHP version
+		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
+			add_action( 'admin_notices', array( $this, 'admin_notice_minimum_php_version' ) );
+			return;
+		}
+
+		// Once we get here, we have passed all validation checks so we can safely include our plugin
+		require_once( 'includes/class-unique-sphere-main.php' );
+
+
+	}
+
+	/**
+	 * Run the plugin
+	 *
+	 * This function is responsible for executing the core functionality of the plugin.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+
+	/**
+	 * Admin notice
+	 *
+	 * Warning when the site doesn't have Elementor installed or activated.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function admin_notice_missing_main_plugin() {
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
+
+		$message = sprintf(
+			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'unique-sphere-elementor' ),
+			'<strong>' . esc_html__( 'Unique Sphere Elementor Addon', 'unique-sphere-elementor' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'unique-sphere-elementor' ) . '</strong>'
+		);
+
+		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+	}
+
+	/**
+	 * Admin notice
+	 *
+	 * Warning when the site doesn't have a minimum required Elementor version.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function admin_notice_minimum_elementor_version() {
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
+
+		$message = sprintf(
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'unique-sphere-elementor' ),
+			'<strong>' . esc_html__( 'Unique Sphere Elementor Addon', 'unique-sphere-elementor' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'unique-sphere-elementor' ) . '</strong>',
+			self::MINIMUM_ELEMENTOR_VERSION
+		);
+
+		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+	}
+
+	/**
+	 * Admin notice
+	 *
+	 * Warning when the site doesn't have a minimum required PHP version.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function admin_notice_minimum_php_version() {
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
+
+		$message = sprintf(
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'unique-sphere-elementor' ),
+			'<strong>' . esc_html__( 'Unique Sphere Elementor Addon', 'unique-sphere-elementor' ) . '</strong>',
+			'<strong>' . esc_html__( 'PHP', 'unique-sphere-elementor' ) . '</strong>',
+			self::MINIMUM_PHP_VERSION
+		);
+
+		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
+	}
 }
-// Start the plugin
-run_fast_wordpress_media_cleaner();
+
+// Activation and deactivation hooks
+function uswtk_activate() {
+	require_once plugin_dir_path(__FILE__) . 'includes/class-uswtk-activator.php';
+	USWTK_Activator::activate();
+}
+
+function uswtk_deactivate() {
+	require_once plugin_dir_path(__FILE__) . 'includes/class-uswtk-deactivator.php';
+	USWTK_Deactivator::deactivate();
+}
+
+register_activation_hook(__FILE__, 'uswtk_activate');
+register_deactivation_hook(__FILE__, 'uswtk_deactivate');
+
+// Instantiate Unique_Sphere_Elementor.
+new Unique_Sphere_Elementor();

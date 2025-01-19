@@ -1,5 +1,5 @@
 <?php
-class Fast_Wordpress_Media_Cleaner_Deactivator
+class USWTK_Deactivator
 {
     public static function deactivate()
     {
