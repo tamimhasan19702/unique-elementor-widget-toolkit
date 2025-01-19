@@ -1,14 +1,15 @@
 <?php
 /**
- * Plugin Name:       Fast WordPress Media Cleaner
- * Description:      A WordPress plugin that efficiently marks your unused media files for deletion.
- * Version:           1.0.0
+ * Plugin Name: Unique Sphere Widget Toolkit
+ * Description: An Elementor widget toolkit designed to add unique, innovative, and awesome widgets for enhancing your website's functionality and appearance. Explore endless possibilities with custom widgets tailored to meet your needs.
+ * Version:     1.0.0
  * Author:            Tareq Monower
  * Author URI:        https://profiles.wordpress.org/tamimh/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       fast-social-media-ai-poster
- * Domain Path:       /languages
+ * Text Domain:       holiday-calendar
+ * Elementor tested up to: 3.5.0
+ * Elementor Pro tested up to: 3.5.0
  */
 
 // If this file is called directly, abort.
