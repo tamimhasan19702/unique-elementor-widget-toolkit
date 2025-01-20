@@ -1,7 +1,7 @@
 <?php
-namespace ElementorHelloWorld;
+namespace UniqueElementorToolkit;
 
-use ElementorHelloWorld\PageSettings\Page_Settings;
+use UniqueElementorToolkit\PageSettings\Page_Settings;
 
 /**
  * Class Plugin
@@ -124,11 +124,70 @@ class Plugin {
 		new Page_Settings();
 	}
 
+	
+	public function enqueue_admin_frontend_assets() {
+		$admin_frontend_assets = plugin_dir_url(__FILE__) . 'admin-frontend/dist/';
+
+		// enqueue main js
+		wp_enqueue_script('unique-elementor-widget-toolkit-admin-frontend-script', $admin_frontend_assets . 'assets/index-8h-hXAGN.js', array(), null, true);
+
+		// enqueue main css
+		wp_enqueue_style('unique-elementor-widget-toolkit-admin-frontend-style', $admin_frontend_assets . 'assets/index-n_ryQ3BS.css');
+	}
+
+	public function register_shortcodes() {
+        add_shortcode('react_app', [$this, 'render_react_app_shortcode']);
+    }
+
+	public function render_react_app_shortcode() {
+        return '<div id="root"></div>'; // This is where your React app will be mounted
+    }
+
+	public function register_custom_post_type() {
+		$labels = array(
+			'name' => __( 'Unique Elementor Widget Toolkits', 'unique-elementor-widget-toolkit' ),
+			'singular_name' => __( 'Unique Elementor Widget Toolkit', 'unique-elementor-widget-toolkit' ),
+		);
+	
+		$args = array(
+			'labels' => $labels,
+			'public' => true,
+			'has_archive' => true,
+			'supports' => array('title', 'editor'), // Add 'editor' to support content
+			'menu_icon' => 'dashicons-screenoptions', // Add a widget icon
+			'capability_type' => 'post',
+			'capabilities' => array(
+				'create_posts' => 'do_not_allow',
+			),
+			'map_meta_cap' => true,
+		);
+	
+		register_post_type( 'uewtk', $args );
+	
+		// Set default content for the custom post type
+		add_filter('default_content', [$this, 'set_default_content'], 10, 2);
+	}
+	
+	/**
+	 * Set default content for the custom post type
+	 *
+	 * @param string $content The default content.
+	 * @param WP_Post $post The post object.
+	 * @return string Modified content.
+	 */
+	public function set_default_content($content, $post) {
+		if ($post->post_type === 'uewtk') {
+			$content = '[react_app]'; // Set the default content to the shortcode
+		}
+		return $content;
+	}
+
+
 	/**
 	 *  Plugin class constructor
 	 *
 	 * Register plugin action hooks and filters
-	 *
+	 *a
 	 * @since 1.2.0
 	 * @access public
 	 */
@@ -142,9 +201,18 @@ class Plugin {
 
 		// Register editor scripts
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'editor_scripts' ] );
+
+		add_action('init', [$this, 'register_custom_post_type']);
+
+		add_action('init', [$this, 'register_shortcodes']);
+
+		// add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_frontend_assets']);
 		
 		$this->add_page_settings_controls();
 	}
+
+
+
 }
 
 // Instantiate Plugin Class

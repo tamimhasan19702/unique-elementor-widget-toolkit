@@ -1,5 +1,5 @@
 <?php
-namespace ElementorHelloWorld\PageSettings;
+namespace UniqueElementorToolkit\PageSettings;
 
 use Elementor\Controls_Manager;
 use Elementor\Core\DocumentTypes\PageBase;

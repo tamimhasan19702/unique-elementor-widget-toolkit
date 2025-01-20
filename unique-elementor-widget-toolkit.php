@@ -1,12 +1,11 @@
 <?php
 /**
- * Plugin Name: Elementor Hello World
- * Description: Elementor sample plugin.
- * Plugin URI:  https://elementor.com/
- * Version:     1.2.1
- * Author:      Author Name
- * Author URI:  https://elementor.com/
- * Text Domain: elementor-hello-world
+ * Plugin Name: Unique Elementor Widget Toolkit
+ * Description: Unique Elementor Widget Toolkit is a feature-packed plugin designed to enhance Elementor with unique and highly useful widgets. Unlock creative possibilities and streamline your website building process with custom-designed widgets tailored to meet modern web design needs.
+ * Version:     1.0.0
+ * Author:      Tareq Monower
+ * Author URI:  https://profiles.wordpress.org/tamimh
+ * Text Domain: unique-elementor-widget-toolkit
  * Elementor tested up to: 3.5.0
  * Elementor Pro tested up to: 3.5.0
  */
@@ -24,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * Any custom code should go inside Plugin Class in the plugin.php file.
  * @since 1.2.0
  */
-final class Elementor_Hello_World {
+final class Unique_Elementor_Widget_Toolkit {
 
 	/**
 	 * Plugin Version
@@ -171,4 +170,4 @@ final class Elementor_Hello_World {
 }
 
 // Instantiate Elementor_Hello_World.
-new Elementor_Hello_World();
+new Unique_Elementor_Widget_Toolkit();
