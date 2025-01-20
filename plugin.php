@@ -1,14 +1,17 @@
-<?php 
-
-namespace USWTK_Main;
+<?php
+namespace ElementorHelloWorld;
 
 use ElementorHelloWorld\PageSettings\Page_Settings;
 
+/**
+ * Class Plugin
+ *
+ * Main Plugin class
+ * @since 1.2.0
+ */
+class Plugin {
 
-
-class USWTK_Main
-{
-    /**
+	/**
 	 * Instance
 	 *
 	 * @since 1.2.0
@@ -45,7 +48,7 @@ class USWTK_Main
 	 * @access public
 	 */
 	public function widget_scripts() {
-	
+		wp_register_script( 'elementor-hello-world', plugins_url( '/assets/js/hello-world.js', __FILE__ ), [ 'jquery' ], false, true );
 	}
 
 	/**
@@ -144,5 +147,5 @@ class USWTK_Main
 	}
 }
 
-
-USWTK_Main::instance();
+// Instantiate Plugin Class
+Plugin::instance();

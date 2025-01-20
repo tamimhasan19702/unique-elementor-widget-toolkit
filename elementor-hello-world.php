@@ -1,41 +1,43 @@
 <?php
 /**
- * Plugin Name: Unique Sphere Widget Toolkit
- * Description: An Elementor widget toolkit designed to add unique, innovative, and awesome widgets for enhancing your website's functionality and appearance. Explore endless possibilities with custom widgets tailored to meet your needs.
- * Version:     1.0.0
- * Author:            Tareq Monower
- * Author URI:        https://profiles.wordpress.org/tamimh/
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       holiday-calendar
+ * Plugin Name: Elementor Hello World
+ * Description: Elementor sample plugin.
+ * Plugin URI:  https://elementor.com/
+ * Version:     1.2.1
+ * Author:      Author Name
+ * Author URI:  https://elementor.com/
+ * Text Domain: elementor-hello-world
  * Elementor tested up to: 3.5.0
  * Elementor Pro tested up to: 3.5.0
  */
 
- if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Main Unique Sphere Class
+ * Main Elementor Hello World Class
  *
- * The init class that runs the Unique Sphere plugin.
- * Intended to make sure that the plugin's minimum requirements are met.
+ * The init class that runs the Hello World plugin.
+ * Intended To make sure that the plugin's minimum requirements are met.
  *
- * @since 1.0.0
+ * You should only modify the constants to match your plugin's needs.
+ *
+ * Any custom code should go inside Plugin Class in the plugin.php file.
+ * @since 1.2.0
  */
-final class Unique_Sphere_Elementor {
+final class Elementor_Hello_World {
 
 	/**
 	 * Plugin Version
 	 *
-	 * @since 1.0.0
+	 * @since 1.2.1
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.0.0';
+	const VERSION = '1.2.1';
 
 	/**
 	 * Minimum Elementor Version
 	 *
-	 * @since 1.0.0
+	 * @since 1.2.0
 	 * @var string Minimum Elementor version required to run the plugin.
 	 */
 	const MINIMUM_ELEMENTOR_VERSION = '3.0.0';
@@ -43,7 +45,7 @@ final class Unique_Sphere_Elementor {
 	/**
 	 * Minimum PHP Version
 	 *
-	 * @since 1.0.0
+	 * @since 1.2.0
 	 * @var string Minimum PHP version required to run the plugin.
 	 */
 	const MINIMUM_PHP_VERSION = '7.0';
@@ -55,6 +57,7 @@ final class Unique_Sphere_Elementor {
 	 * @access public
 	 */
 	public function __construct() {
+
 		// Init Plugin
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 	}
@@ -63,12 +66,16 @@ final class Unique_Sphere_Elementor {
 	 * Initialize the plugin
 	 *
 	 * Validates that Elementor is already loaded.
-	 * Checks for basic plugin requirements.
+	 * Checks for basic plugin requirements, if one check fail don't continue,
+	 * if all check have passed include the plugin class.
 	 *
-	 * @since 1.0.0
+	 * Fired by `plugins_loaded` action hook.
+	 *
+	 * @since 1.2.0
 	 * @access public
 	 */
 	public function init() {
+
 		// Check if Elementor installed and activated
 		if ( ! did_action( 'elementor/loaded' ) ) {
 			add_action( 'admin_notices', array( $this, 'admin_notice_missing_main_plugin' ) );
@@ -87,20 +94,9 @@ final class Unique_Sphere_Elementor {
 			return;
 		}
 
-		// Once we get here, we have passed all validation checks so we can safely include our plugin
-		require_once( 'includes/class-unique-sphere-main.php' );
-
-
+		// Once we get here, We have passed all validation checks so we can safely include our plugin
+		require_once( 'plugin.php' );
 	}
-
-	/**
-	 * Run the plugin
-	 *
-	 * This function is responsible for executing the core functionality of the plugin.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
 
 	/**
 	 * Admin notice
@@ -116,9 +112,10 @@ final class Unique_Sphere_Elementor {
 		}
 
 		$message = sprintf(
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'unique-sphere-elementor' ),
-			'<strong>' . esc_html__( 'Unique Sphere Elementor Addon', 'unique-sphere-elementor' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'unique-sphere-elementor' ) . '</strong>'
+			/* translators: 1: Plugin name 2: Elementor */
+			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elementor-hello-world' ),
+			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'elementor-hello-world' ) . '</strong>'
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -138,9 +135,10 @@ final class Unique_Sphere_Elementor {
 		}
 
 		$message = sprintf(
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'unique-sphere-elementor' ),
-			'<strong>' . esc_html__( 'Unique Sphere Elementor Addon', 'unique-sphere-elementor' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'unique-sphere-elementor' ) . '</strong>',
+			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
+			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'elementor-hello-world' ) . '</strong>',
 			self::MINIMUM_ELEMENTOR_VERSION
 		);
 
@@ -161,9 +159,10 @@ final class Unique_Sphere_Elementor {
 		}
 
 		$message = sprintf(
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'unique-sphere-elementor' ),
-			'<strong>' . esc_html__( 'Unique Sphere Elementor Addon', 'unique-sphere-elementor' ) . '</strong>',
-			'<strong>' . esc_html__( 'PHP', 'unique-sphere-elementor' ) . '</strong>',
+			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
+			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
+			'<strong>' . esc_html__( 'PHP', 'elementor-hello-world' ) . '</strong>',
 			self::MINIMUM_PHP_VERSION
 		);
 
@@ -171,19 +170,5 @@ final class Unique_Sphere_Elementor {
 	}
 }
 
-// Activation and deactivation hooks
-function uswtk_activate() {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-uswtk-activator.php';
-	USWTK_Activator::activate();
-}
-
-function uswtk_deactivate() {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-uswtk-deactivator.php';
-	USWTK_Deactivator::deactivate();
-}
-
-register_activation_hook(__FILE__, 'uswtk_activate');
-register_deactivation_hook(__FILE__, 'uswtk_deactivate');
-
-// Instantiate Unique_Sphere_Elementor.
-new Unique_Sphere_Elementor();
+// Instantiate Elementor_Hello_World.
+new Elementor_Hello_World();
