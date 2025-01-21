@@ -3,7 +3,7 @@
 namespace UniqueElementorToolkit;
 
 use UniqueElementorToolkit\PageSettings\Page_Settings;
-use UniqueElementorToolkit\Widgets\Unique_3D_Viewer;
+use UniqueElementorToolkit\Widgets\Unique_Cool_Card;
 
 class Plugin {
     private static $_instance = null;
@@ -15,8 +15,15 @@ class Plugin {
         return self::$_instance;
     }
 
+    /**
+     * Enqueue widget styles
+     *
+     * @since 1.0.0
+     *
+     * @access public
+     */
     public function widget_scripts() {
-       
+        wp_enqueue_style( 'uewtk-cool-card', plugins_url( '/assets/widgets-css/uewtk-cool-card.css', __FILE__ ) );
     }
 
     public function editor_scripts() {
@@ -40,9 +47,11 @@ class Plugin {
 
     public function register_widgets( $widgets_manager ) {
         
-        require_once( __DIR__ . '/widgets/uewtk-3d-viewer.php' );
 
-        $widgets_manager->register( new Unique_3D_Viewer() );
+        require_once( __DIR__ . '/widgets/uewtk-cool-card.php' );
+
+     
+        $widgets_manager->register( new Unique_Cool_Card() );
     }
 
     private function add_page_settings_controls() {

@@ -7,13 +7,13 @@ use Elementor\Controls_Manager;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Unique 3D Viewer
+ * Unique Cool Card
  *
- * Elementor widget for Unique 3D Viewer
+ * Elementor widget for Unique Cool Card
  *
  * @since 1.0.0
  */
-class Unique_3D_Viewer extends Widget_Base {
+class Unique_Cool_Card extends Widget_Base {
 
     /**
      * Retrieve the widget name.
@@ -25,7 +25,7 @@ class Unique_3D_Viewer extends Widget_Base {
      * @return string Widget name.
      */
     public function get_name() {
-        return 'unique-3d-viewer';
+        return 'unique-cool-card';
     }
 
     /**
@@ -38,7 +38,7 @@ class Unique_3D_Viewer extends Widget_Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Unique 3D Viewer', 'unique-elementor-widget-toolkit' );
+        return __( 'Unique Cool Card', 'unique-elementor-widget-toolkit' );
     }
 
     /**
@@ -51,7 +51,7 @@ class Unique_3D_Viewer extends Widget_Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'eicon-parallax';
+        return 'eicon-info-box';
     }
 
     /**
@@ -81,7 +81,7 @@ class Unique_3D_Viewer extends Widget_Base {
     }
  
 
-    protected function uewtk_3d_viewer_controls(){
+    protected function uewtk_cool_card_controls(){
         $this->start_controls_section(
             'section_content',
             [
@@ -89,39 +89,13 @@ class Unique_3D_Viewer extends Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'title',
-            [
-                'label' => __( 'Title', 'unique-elementor-widget-toolkit' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => __( '3D Model Viewer', 'unique-elementor-widget-toolkit' ),
-            ]
-        );
-
-        $this->add_control(
-            'model_src',
-            [
-                'label' => __( 'Model Source URL', 'unique-elementor-widget-toolkit' ),
-                'type' => Controls_Manager::TEXT,
-                'default' => 'https://assets.codepen.io/89905/nike_air_max_90.glb',
-            ]
-        );
-
-        $this->add_control(
-            'custom_html',
-            [
-                'label' => __( 'Custom HTML', 'unique-elementor-widget-toolkit' ),
-                'type' => Controls_Manager::CODE,
-                'default' => __( '<div>Your custom HTML here</div>', 'unique-elementor-widget-toolkit' ),
-                'language' => 'html',
-            ]
-        );
+       
 
         $this->end_controls_section();
     }
 
 
-    protected function uewtk_3d_viewer_styles(){
+    protected function uewtk_cool_card_styles(){
         $this->start_controls_section(
             'section_style',
             [
@@ -151,6 +125,10 @@ class Unique_3D_Viewer extends Widget_Base {
         $this->end_controls_section();
     }
 
+    public function get_style_depends(): array {
+		return [ 'uewtk-cool-card' ];
+	}
+
 
     /**
      * Register the widget controls.
@@ -161,9 +139,9 @@ class Unique_3D_Viewer extends Widget_Base {
      */
     protected function register_controls() {
        
-        $this->uewtk_3d_viewer_controls();
+        $this->uewtk_cool_card_controls();
 
-        $this->uewtk_3d_viewer_styles();
+        $this->uewtk_cool_card_styles();
         
     }
 
@@ -177,13 +155,22 @@ class Unique_3D_Viewer extends Widget_Base {
     protected function render() {
 
         $settings = $this->get_settings_for_display();
-      
+    
         ?>
-<div class="unique-3d-viewer">
-    <h1>header</h1>
-    <?php echo $settings['custom_html']; ?>
-    <h1>footer</h1>
-</div>
+
+<a href="https://www.mythrillfiction.com/the-dark-rider" alt="Mythrill" target="_blank">
+    <div class="unique-card">
+        <div class="unique-wrapper">
+            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg"
+                class="unique-cover-image" />
+        </div>
+        <!-- <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png" class="unique-title" /> -->
+        <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="unique-character" />
+    </div>
+</a>
+
+
+
 <?php 
     }
 }
