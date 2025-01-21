@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Unique Elementor Widget Toolkit
- * Description: Unique Elementor Widget Toolkit is a feature-packed plugin designed to enhance Elementor with unique and highly useful widgets. Unlock creative possibilities and streamline your website building process with custom-designed widgets tailored to meet modern web design needs.
+ * Description: Enhance Elementor with unique and highly useful widgets.
  * Version:     1.0.0
  * Author:      Tareq Monower
  * Author URI:  https://profiles.wordpress.org/tamimh

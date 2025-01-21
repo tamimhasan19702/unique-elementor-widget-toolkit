@@ -1,5 +1,5 @@
 <?php
-namespace ElementorHelloWorld\Widgets;
+namespace UniqueElementorToolkit\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
@@ -69,7 +69,7 @@ class Hello_World extends Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'general' ];
+		return [ 'unique-elementor-widget-toolkit' ];
 	}
 
 	/**
@@ -171,9 +171,9 @@ class Hello_World extends Widget_Base {
 	 */
 	protected function content_template() {
 		?>
-		<div class="title">
-			{{{ settings.title }}}
-		</div>
-		<?php
+<div class="title">
+    {{{ settings.title }}}
+</div>
+<?php
 	}
 }
