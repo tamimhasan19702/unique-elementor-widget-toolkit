@@ -4,3 +4,18 @@ div {
     font-size: 20px;
   }
 }
+
+@keyframes foo {
+  to {
+    transform: scale(1);
+  }
+}
+
+model-viewer {
+  display: block;
+  width: 100%;
+  height: 95vh;
+  position: fixed;
+  animation: foo linear both;
+  z-index: -1;
+}

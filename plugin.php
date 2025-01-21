@@ -3,7 +3,7 @@
 namespace UniqueElementorToolkit;
 
 use UniqueElementorToolkit\PageSettings\Page_Settings;
-use UniqueElementorToolkit\Widgets\Hello_World;
+use UniqueElementorToolkit\Widgets\Unique_3D_Viewer;
 
 class Plugin {
     private static $_instance = null;
@@ -39,8 +39,8 @@ class Plugin {
     }
 
     public function register_widgets( $widgets_manager ) {
-        require_once( __DIR__ . '/widgets/hello-world.php' );
-        $widgets_manager->register( new Widgets\Hello_World() );
+        require_once( __DIR__ . '/widgets/uewtk-3d-viewer.php' );
+        $widgets_manager->register( new Unique_3D_Viewer() );
     }
 
     private function add_page_settings_controls() {
@@ -54,7 +54,7 @@ class Plugin {
             [
                 'title' => __( 'Unique Toolkit', 'unique-elementor-widget-toolkit' ),
                 'icon' => 'font',
-                'position' => 6, // Set a low number to position it at the top
+                'position' => 2, // Set a low number to position it at the top
             ]
         );
     }
