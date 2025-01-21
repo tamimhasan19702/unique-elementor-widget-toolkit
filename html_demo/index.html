@@ -7,157 +7,337 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      :root {
-        --card-height: 300px;
-        --card-width: calc(var(--card-height) / 1.5);
-      }
       * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
       }
 
-      .unique-cool-card {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
+      .unique-section {
         height: 100vh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
       }
 
-      .unique-card {
-        width: var(--card-width);
-        height: var(--card-height);
+      .unique-main {
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        padding: 0 36px;
-        perspective: 2500px;
-        margin: 0 50px;
-        border-radius: 15px;
-      }
-
-      .unique-cover-image {
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        border-radius: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
       }
 
-      .unique-wrapper {
-        transition: all 0.5s;
+      .unique-item {
+        width: 200px;
+        height: 300px;
+        list-style-type: none;
         position: absolute;
-        width: 100%;
-        z-index: -1;
-        border-radius: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        background-position: center;
+        background-size: cover;
+        border-radius: 20px;
+        box-shadow: 0 20px 30px rgba(255, 255, 255, 0.3) inset;
+        transition:
+          transform 0.1s,
+          left 0.75s,
+          top 0.75s,
+          width 0.75s,
+          height 0.75s;
+
+        &:nth-child(1),
+        &:nth-child(2) {
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          transform: none;
+          border-radius: 0;
+          box-shadow: none;
+          opacity: 1;
+        }
+
+        &:nth-child(3) {
+          left: 50%;
+        }
+        &:nth-child(4) {
+          left: calc(50% + 220px);
+        }
+        &:nth-child(5) {
+          left: calc(50% + 440px);
+        }
+        &:nth-child(6) {
+          left: calc(50% + 660px);
+          opacity: 0;
+        }
       }
 
-      .unique-card:hover .unique-wrapper {
-        transform: perspective(900px) translateY(-5%) rotateX(25deg)
-          translateZ(0);
-        box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
-      }
-
-      .unique-wrapper::before,
-      .unique-wrapper::after {
-        content: "";
+      .unique-content {
+        width: min(30vw, 400px);
+        position: absolute;
+        top: 50%;
+        left: 3rem;
+        transform: translateY(-50%);
+        font:
+          400 0.85rem helvetica,
+          sans-serif;
+        color: white;
+        text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
         opacity: 0;
-        width: 100%;
-        height: 80px;
-        transition: all 0.5s;
+        display: none;
+
+        & .unique-title {
+          font-family: "arial-black";
+          text-transform: uppercase;
+        }
+
+        & .unique-description {
+          line-height: 1.7;
+          margin: 1rem 0 1.5rem;
+          font-size: 0.8rem;
+        }
+
+        & button {
+          width: fit-content;
+          background-color: rgba(0, 0, 0, 0.1);
+          color: white;
+          border: 2px solid white;
+          border-radius: 0.25rem;
+          padding: 0.75rem;
+          cursor: pointer;
+        }
+      }
+
+      .unique-item:nth-of-type(2) .unique-content {
+        display: block;
+        animation: show 0.75s ease-in-out 0.3s forwards;
+      }
+
+      @keyframes show {
+        0% {
+          filter: blur(5px);
+          transform: translateY(calc(-50% + 75px));
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0);
+        }
+      }
+
+      .unique-nav {
         position: absolute;
-        left: 0;
-      }
-      .unique-wrapper::before {
-        top: 0;
-        height: 100%;
-        background-image: linear-gradient(
-          to top,
-          transparent 46%,
-          rgba(12, 13, 19, 0.5) 68%,
-          rgba(12, 13, 19) 97%
-        );
-      }
-      .unique-wrapper::after {
-        bottom: 0;
-        opacity: 1;
-        background-image: linear-gradient(
-          to bottom,
-          transparent 46%,
-          rgba(12, 13, 19, 0.5) 68%,
-          rgba(12, 13, 19) 97%
-        );
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+        user-select: none;
+
+        & .unique-btn {
+          background-color: rgba(255, 255, 255, 0.5);
+          color: rgba(0, 0, 0, 0.7);
+          border: 2px solid rgba(0, 0, 0, 0.6);
+          margin: 0 0.25rem;
+          padding: 0.75rem;
+          border-radius: 50%;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+          }
+        }
       }
 
-      .unique-card:hover .unique-wrapper::before,
-      .unique-wrapper::after {
-        opacity: 1;
+      @media (width > 650px) and (width < 900px) {
+        .unique-content {
+          & .unique-title {
+            font-size: 1rem;
+          }
+          & .unique-description {
+            font-size: 0.7rem;
+          }
+          & button {
+            font-size: 0.7rem;
+          }
+        }
+        .unique-item {
+          width: 160px;
+          height: 270px;
+
+          &:nth-child(3) {
+            left: 50%;
+          }
+          &:nth-child(4) {
+            left: calc(50% + 170px);
+          }
+          &:nth-child(5) {
+            left: calc(50% + 340px);
+          }
+          &:nth-child(6) {
+            left: calc(50% + 510px);
+            opacity: 0;
+          }
+        }
       }
 
-      .unique-card:hover .unique-wrapper::after {
-        height: 120px;
-      }
-      .unique-title {
-        width: 100%;
-        transition: transform 0.5s;
-      }
-      .unique-card:hover .unique-title {
-        transform: translate3d(0%, -50px, 100px);
-      }
+      @media (width < 650px) {
+        .unique-content {
+          & .unique-title {
+            font-size: 0.9rem;
+          }
+          & .unique-description {
+            font-size: 0.65rem;
+          }
+          & button {
+            font-size: 0.7rem;
+          }
+        }
+        .unique-item {
+          width: 130px;
+          height: 220px;
 
-      .unique-character {
-        width: 100%;
-        opacity: 0;
-        transition: all 0.5s;
-        position: absolute;
-        z-index: -1;
-      }
-
-      .unique-card:hover .unique-character {
-        opacity: 1;
-        transform: translate3d(0%, -30%, 100px);
+          &:nth-child(3) {
+            left: 50%;
+          }
+          &:nth-child(4) {
+            left: calc(50% + 140px);
+          }
+          &:nth-child(5) {
+            left: calc(50% + 280px);
+          }
+          &:nth-child(6) {
+            left: calc(50% + 420px);
+            opacity: 0;
+          }
+        }
       }
     </style>
   </head>
 
   <body>
-    <div class="unique-cool-card">
-      <a
-        href="https://www.mythrillfiction.com/the-dark-rider"
-        alt="Mythrill"
-        target="_blank">
-        <div class="unique-card">
-          <div class="unique-wrapper">
-            <img
-              src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg"
-              class="unique-cover-image" />
-          </div>
-          <img
-            src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png"
-            class="unique-title" />
-          <img
-            src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp"
-            class="unique-character" />
-        </div>
-      </a>
+    <section class="unique-section">
+      <div class="unique-main">
+        <ul class="unique-slider">
+          <li
+            class="unique-item"
+            style="
+              background-image: url(&quot;https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg&quot;);
+            ">
+            <div class="unique-content">
+              <h2 class="unique-title">"Lossless Youths"</h2>
+              <p class="unique-description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Tempore fuga voluptatum, iure corporis inventore praesentium
+                nisi. Id laboriosam ipsam enim.
+              </p>
+              <button>Read More</button>
+            </div>
+          </li>
+          <li
+            class="unique-item"
+            style="
+              background-image: url(&quot;https://i.redd.it/tc0aqpv92pn21.jpg&quot;);
+            ">
+            <div class="unique-content">
+              <h2 class="unique-title">"Estrange Bond"</h2>
+              <p class="unique-description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Tempore fuga voluptatum, iure corporis inventore praesentium
+                nisi. Id laboriosam ipsam enim.
+              </p>
+              <button>Read More</button>
+            </div>
+          </li>
+          <li
+            class="unique-item"
+            style="
+              background-image: url(&quot;https://wharferj.files.wordpress.com/2015/11/bio_north.jpg&quot;);
+            ">
+            <div class="unique-content">
+              <h2 class="unique-title">"The Gate Keeper"</h2>
+              <p class="unique-description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Tempore fuga voluptatum, iure corporis inventore praesentium
+                nisi. Id laboriosam ipsam enim.
+              </p>
+              <button>Read More</button>
+            </div>
+          </li>
+          <li
+            class="unique-item"
+            style="
+              background-image: url(&quot;https://images7.alphacoders.com/878/878663.jpg&quot;);
+            ">
+            <div class="unique-content">
+              <h2 class="unique-title">"Last Trace Of Us"</h2>
+              <p class="unique-description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Tempore fuga voluptatum, iure corporis inventore praesentium
+                nisi. Id laboriosam ipsam enim.
+              </p>
+              <button>Read More</button>
+            </div>
+          </li>
+          <li
+            class="unique-item"
+            style="
+              background-image: url(&quot;https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg&quot;);
+            ">
+            <div class="unique-content">
+              <h2 class="unique-title">"Urban Decay"</h2>
+              <p class="unique-description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Tempore fuga voluptatum, iure corporis inventore praesentium
+                nisi. Id laboriosam ipsam enim.
+              </p>
+              <button>Read More</button>
+            </div>
+          </li>
+          <li
+            class="unique-item"
+            style="
+              background-image: url(&quot;https://da.se/app/uploads/2015/09/simon-december1994.jpg&quot;);
+            ">
+            <div class="unique-content">
+              <h2 class="unique-title">"The Migration"</h2>
+              <p class="unique-description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Tempore fuga voluptatum, iure corporis inventore praesentium
+                nisi. Id laboriosam ipsam enim.
+              </p>
+              <button>Read More</button>
+            </div>
+          </li>
+        </ul>
+        <nav class="unique-nav">
+          <ion-icon
+            class="unique-btn unique-prev"
+            name="arrow-back-outline"></ion-icon>
+          <ion-icon
+            class="unique-btn unique-next"
+            name="arrow-forward-outline"></ion-icon>
+        </nav>
+      </div>
+    </section>
 
-      <a
-        href="https://www.mythrillfiction.com/force-mage"
-        alt="Mythrill"
-        target="_blank">
-        <div class="unique-card">
-          <div class="unique-wrapper">
-            <img
-              src="https://ggayane.github.io/css-experiments/cards/force_mage-cover.jpg"
-              class="unique-cover-image" />
-          </div>
-          <img
-            src="https://ggayane.github.io/css-experiments/cards/force_mage-title.png"
-            class="unique-title" />
-          <img
-            src="https://ggayane.github.io/css-experiments/cards/force_mage-character.webp"
-            class="unique-character" />
-        </div>
-      </a>
-    </div>
+    <script>
+      const slider = document.querySelector(".unique-slider");
+
+      function activate(e) {
+        const items = document.querySelectorAll(".unique-item");
+        e.target.matches(".unique-next") && slider.append(items[0]);
+        e.target.matches(".unique-prev") &&
+          slider.prepend(items[items.length - 1]);
+      }
+
+      document.addEventListener("click", activate, false);
+    </script>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </body>
 </html>
