@@ -77,17 +77,11 @@ class Unique_3D_Viewer extends Widget_Base {
      * @return array Widget scripts dependencies.
      */
     public function get_script_depends() {
-        return [ 'model-viewer' ]; // Add the model-viewer script as a dependency
+        return [ 'model-viewer-loader', 'model-viewer-modern', 'model-viewer-legacy' ]; // Add the model-viewer script as a dependency
     }
+ 
 
-    /**
-     * Register the widget controls.
-     *
-     * @since 1.0.0
-     *
-     * @access protected
-     */
-    protected function register_controls() {
+    protected function uewtk_3d_viewer_controls(){
         $this->start_controls_section(
             'section_content',
             [
@@ -113,8 +107,21 @@ class Unique_3D_Viewer extends Widget_Base {
             ]
         );
 
-        $this->end_controls_section();
+        $this->add_control(
+            'custom_html',
+            [
+                'label' => __( 'Custom HTML', 'unique-elementor-widget-toolkit' ),
+                'type' => Controls_Manager::CODE,
+                'default' => __( '<div>Your custom HTML here</div>', 'unique-elementor-widget-toolkit' ),
+                'language' => 'html',
+            ]
+        );
 
+        $this->end_controls_section();
+    }
+
+
+    protected function uewtk_3d_viewer_styles(){
         $this->start_controls_section(
             'section_style',
             [
@@ -144,6 +151,22 @@ class Unique_3D_Viewer extends Widget_Base {
         $this->end_controls_section();
     }
 
+
+    /**
+     * Register the widget controls.
+     *
+     * @since 1.0.0
+     *
+     * @access protected
+     */
+    protected function register_controls() {
+       
+        $this->uewtk_3d_viewer_controls();
+
+        $this->uewtk_3d_viewer_styles();
+        
+    }
+
     /**
      * Render the widget output on the frontend.
      *
@@ -152,27 +175,14 @@ class Unique_3D_Viewer extends Widget_Base {
      * @access protected
      */
     protected function render() {
-        // Enqueue the model-viewer script
-        wp_register_script(
-            'model-viewer',
-            'https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js',
-            [],
-            '3.1.1',
-            true
-        );
-        wp_enqueue_script( 'model-viewer' );
 
         $settings = $this->get_settings_for_display();
-        $model_src = esc_url( $settings['model_src'] ); // Get the model source URL
-
+      
         ?>
 <div class="unique-3d-viewer">
-    <h2 class="title" style="text-transform: <?php echo esc_attr( $settings['text_transform'] ); ?>">
-        <?php echo esc_html( $settings['title'] ); ?>
-    </h2>
-    <model-viewer alt="<?php echo esc_attr( $settings['title'] ); ?>" src="<?php echo $model_src; ?>" camera-controls
-        auto-rotate disable-zoom>
-    </model-viewer>
+    <h1>header</h1>
+    <?php echo $settings['custom_html']; ?>
+    <h1>footer</h1>
 </div>
 <?php 
     }

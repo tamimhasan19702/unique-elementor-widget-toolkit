@@ -16,7 +16,7 @@ class Plugin {
     }
 
     public function widget_scripts() {
-        wp_register_script( 'elementor-hello-world', plugins_url( '/assets/js/hello-world.js', __FILE__ ), [ 'jquery' ], false, true );
+       
     }
 
     public function editor_scripts() {
@@ -39,7 +39,9 @@ class Plugin {
     }
 
     public function register_widgets( $widgets_manager ) {
+        
         require_once( __DIR__ . '/widgets/uewtk-3d-viewer.php' );
+
         $widgets_manager->register( new Unique_3D_Viewer() );
     }
 
@@ -47,6 +49,7 @@ class Plugin {
         require_once( __DIR__ . '/page-settings/manager.php' );
         new Page_Settings();
     }
+    
 
     public function register_category() {
         \Elementor\Plugin::instance()->elements_manager->add_category(
@@ -59,7 +62,7 @@ class Plugin {
         );
     }
 
-    public function hello_react_enqueue_scripts( $hook ) {
+    public function uewtk_react_enqueue_scripts( $hook ) {
         $asset_file = plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
 
         if ( ! file_exists( $asset_file ) ) {
@@ -112,7 +115,7 @@ class Plugin {
         add_action('elementor/widgets/register', [$this, 'register_widgets']);
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'editor_scripts']);
         add_action('elementor/elements/categories_registered', [$this, 'register_category']);
-        add_action('admin_enqueue_scripts', [$this, 'hello_react_enqueue_scripts']);
+        add_action('admin_enqueue_scripts', [$this, 'uewtk_react_enqueue_scripts']);
         add_action('admin_menu', [$this, 'uewtk_admin_menu']);
         $this->add_page_settings_controls();
     }
