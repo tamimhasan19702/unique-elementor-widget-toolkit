@@ -130,10 +130,8 @@ class Plugin {
      * @param string $hook
      */
     public function hello_react_enqueue_scripts( $hook ) {
-        // Check if we are on the correct admin page
-        if ( $hook !== 'toplevel_page_unique-elementor-widget-toolkit' ) {
-            return;
-        }
+       
+    
 
         $asset_file = plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
 
@@ -169,32 +167,31 @@ class Plugin {
     /**
      * Register admin menu page
      */
-    public function register_admin_menu_page() {
-        add_menu_page(
-            __('Unique Elementor Widget Toolkit', 'unique-elementor-widget-toolkit'),
-            __('Unique Elementor Widget Toolkit', 'unique-elementor-widget-toolkit'),
-            'manage_options',
-            'unique-elementor-widget-toolkit',
-            [$this, 'hello_react_admin_menu_callback'],
-            'dashicons-welcome-widgets-menus', 
-        6 
-        );
-    }
-
+   
     /**
      * Admin menu callback
      */
-    public function hello_react_admin_menu_callback() {
-        echo '<div id="root"></div>';
-    }
+   
+    public function uewtk_admin_menu(){
+       add_menu_page( 
+           __( 'Unique Toolkit', 'unique-elementor-widget-toolkit' ),
+           'Unique Toolkit',
+           'manage_options',
+           'unique-toolkit',
+           [$this, 'uewtk_menu_page'],
+           'dashicons-editor-underline',
+           6
+       ); 
+   }
+   
+   
+   /**
+    * Display a custom menu page
+    */
+   public function uewtk_menu_page(){
+       echo '<div id="root"></div>';	
+   }
 
-
-	public function cc_mime_types($mimes) {
-		$mimes['svg'] = 'image/svg+xml';
-		$mimes['gif'] = 'image/gif';
-		return $mimes;
-	}
-	
 
     /**
      * Plugin class constructor
@@ -214,13 +211,10 @@ class Plugin {
         // Register editor scripts
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'editor_scripts']);
 
-        // Register admin menu page
-        add_action('admin_menu', [$this, 'register_admin_menu_page']);
-
         // Enqueue React app scripts
         add_action('admin_enqueue_scripts', [$this, 'hello_react_enqueue_scripts']);
 
-		add_filter('upload_mimes', 'cc_mime_types');
+        add_action( 'admin_menu', [$this, 'uewtk_admin_menu'] );
 
         $this->add_page_settings_controls();
     }
