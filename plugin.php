@@ -4,6 +4,8 @@ namespace UniqueElementorToolkit;
 
 use UniqueElementorToolkit\PageSettings\Page_Settings;
 use UniqueElementorToolkit\Widgets\Unique_Cool_Card;
+use UniqueElementorToolkit\Widgets\Unique_Hero_Slider;
+use UniqueElementorToolkit\Widgets\Unique_Before_After;
 
 class Plugin {
     private static $_instance = null;
@@ -23,7 +25,15 @@ class Plugin {
      * @access public
      */
     public function widget_scripts() {
+
+        // css
         wp_enqueue_style( 'uewtk-cool-card', plugins_url( '/assets/widgets-css/uewtk-cool-card.css', __FILE__ ) );
+        wp_enqueue_style('uewtk-hero-slider-css', plugins_url( '/assets/widgets-css/uewtk-hero-slider.css', __FILE__ ));
+        wp_enqueue_style('uewtk-before-after-css', plugins_url( '/assets/widgets-css/uewtk-before-after.css', __FILE__ ));
+
+        // js
+        wp_enqueue_script( 'uewtk-hero-slider-js', plugins_url( '/assets/widgets-js/uewtk-hero-slider.js', __FILE__ ), ['jquery'], null, true );
+        wp_enqueue_script( 'uewtk-before-after-js', plugins_url( '/assets/widgets-js/uewtk-before-after.js', __FILE__ ), ['jquery'], null, true );
     }
 
     public function editor_scripts() {
@@ -49,9 +59,13 @@ class Plugin {
         
 
         require_once( __DIR__ . '/widgets/uewtk-cool-card.php' );
+        require_once( __DIR__ . '/widgets/uewtk-hero-slider.php' );
+        require_once( __DIR__ . '/widgets/uewtk-before-after.php' );
 
      
         $widgets_manager->register( new Unique_Cool_Card() );
+        $widgets_manager->register( new Unique_Hero_Slider() );
+        $widgets_manager->register( new Unique_Before_After() );
     }
 
     private function add_page_settings_controls() {

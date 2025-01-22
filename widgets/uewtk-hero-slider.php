@@ -76,10 +76,7 @@ class Unique_Hero_Slider extends Widget_Base {
      *
      * @return array Widget scripts dependencies.
      */
-    public function get_script_depends() {
-        return [ 'model-viewer-loader', 'model-viewer-modern', 'model-viewer-legacy' ]; // Add the model-viewer script as a dependency
-    }
- 
+    
 
     protected function uewtk_cool_card_controls(){
         $this->start_controls_section(
@@ -126,10 +123,27 @@ class Unique_Hero_Slider extends Widget_Base {
     }
 
     public function get_style_depends(): array {
-		return [ 'uewtk-cool-card' ];
+		return [ 'uewtk-hero-slider-css' ];
 	}
 
 
+    /**
+     * Retrieve the list of script dependencies the widget depends on.
+     *
+     * Used to set script dependencies required to run the widget's code.
+     *
+     * @since 1.0.0
+     *
+     * @access public
+     *
+     * @return array Widget script dependencies.
+     */
+    public function get_script_depends() {
+        return [ 'uewtk-hero-slider-js']; // Add the model-viewer script as a dependency
+    }
+ 
+
+    
     /**
      * Register the widget controls.
      *
@@ -158,16 +172,94 @@ class Unique_Hero_Slider extends Widget_Base {
     
         ?>
 
-<a href="https://www.mythrillfiction.com/the-dark-rider" alt="Mythrill" target="_blank">
-    <div class="unique-card">
-        <div class="unique-wrapper">
-            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg"
-                class="unique-cover-image" />
-        </div>
-        <!-- <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png" class="unique-title" /> -->
-        <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="unique-character" />
+<section class="unique-section">
+    <div class="unique-main">
+        <ul class="unique-slider">
+            <li class="unique-item" style="
+              background-image: url(&quot;https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg&quot;);
+            ">
+                <div class="unique-content">
+                    <h2 class="unique-title">"Lossless Youths"</h2>
+                    <p class="unique-description">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Tempore fuga voluptatum, iure corporis inventore praesentium
+                        nisi. Id laboriosam ipsam enim.
+                    </p>
+                    <button>Read More</button>
+                </div>
+            </li>
+            <li class="unique-item" style="
+              background-image: url(&quot;https://i.redd.it/tc0aqpv92pn21.jpg&quot;);
+            ">
+                <div class="unique-content">
+                    <h2 class="unique-title">"Estrange Bond"</h2>
+                    <p class="unique-description">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Tempore fuga voluptatum, iure corporis inventore praesentium
+                        nisi. Id laboriosam ipsam enim.
+                    </p>
+                    <button>Read More</button>
+                </div>
+            </li>
+            <li class="unique-item" style="
+              background-image: url(&quot;https://wharferj.files.wordpress.com/2015/11/bio_north.jpg&quot;);
+            ">
+                <div class="unique-content">
+                    <h2 class="unique-title">"The Gate Keeper"</h2>
+                    <p class="unique-description">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Tempore fuga voluptatum, iure corporis inventore praesentium
+                        nisi. Id laboriosam ipsam enim.
+                    </p>
+                    <button>Read More</button>
+                </div>
+            </li>
+            <li class="unique-item" style="
+              background-image: url(&quot;https://images7.alphacoders.com/878/878663.jpg&quot;);
+            ">
+                <div class="unique-content">
+                    <h2 class="unique-title">"Last Trace Of Us"</h2>
+                    <p class="unique-description">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Tempore fuga voluptatum, iure corporis inventore praesentium
+                        nisi. Id laboriosam ipsam enim.
+                    </p>
+                    <button>Read More</button>
+                </div>
+            </li>
+            <li class="unique-item" style="
+              background-image: url(&quot;https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg&quot;);
+            ">
+                <div class="unique-content">
+                    <h2 class="unique-title">"Urban Decay"</h2>
+                    <p class="unique-description">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Tempore fuga voluptatum, iure corporis inventore praesentium
+                        nisi. Id laboriosam ipsam enim.
+                    </p>
+                    <button>Read More</button>
+                </div>
+            </li>
+            <li class="unique-item" style="
+              background-image: url(&quot;https://da.se/app/uploads/2015/09/simon-december1994.jpg&quot;);
+            ">
+                <div class="unique-content">
+                    <h2 class="unique-title">"The Migration"</h2>
+                    <p class="unique-description">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Tempore fuga voluptatum, iure corporis inventore praesentium
+                        nisi. Id laboriosam ipsam enim.
+                    </p>
+                    <button>Read More</button>
+                </div>
+            </li>
+        </ul>
+        <nav class="unique-nav">
+            <ion-icon class="unique-btn unique-prev" name="arrow-back-outline"></ion-icon>
+            <ion-icon class="unique-btn unique-next" name="arrow-forward-outline"></ion-icon>
+        </nav>
     </div>
-</a>
+</section>
 
 
 

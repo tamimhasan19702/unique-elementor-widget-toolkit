@@ -7,13 +7,13 @@ use Elementor\Controls_Manager;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Unique Cool Card
+ * Unique Before After
  *
- * Elementor widget for Unique Cool Card
+ * Elementor widget for Unique Before After
  *
  * @since 1.0.0
  */
-class Unique_Cool_Card extends Widget_Base {
+class Unique_Before_After extends Widget_Base {
 
     /**
      * Retrieve the widget name.
@@ -25,7 +25,7 @@ class Unique_Cool_Card extends Widget_Base {
      * @return string Widget name.
      */
     public function get_name() {
-        return 'unique-cool-card';
+        return 'unique-before-after';
     }
 
     /**
@@ -38,7 +38,7 @@ class Unique_Cool_Card extends Widget_Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Unique Cool Card', 'unique-elementor-widget-toolkit' );
+        return __( 'Unique Before After', 'unique-elementor-widget-toolkit' );
     }
 
     /**
@@ -51,7 +51,7 @@ class Unique_Cool_Card extends Widget_Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'eicon-info-box';
+        return 'eicon-image';
     }
 
     /**
@@ -122,9 +122,13 @@ class Unique_Cool_Card extends Widget_Base {
     }
 
     public function get_style_depends(): array {
-		return [ 'uewtk-cool-card' ];
+		return [ 'uewtk-before-after-css' ];
 	}
 
+
+    public function get_script_depends(): array {
+        return [ 'uewtk-before-after-js' ];
+    }
 
     /**
      * Register the widget controls.
@@ -154,17 +158,36 @@ class Unique_Cool_Card extends Widget_Base {
     
         ?>
 
-<a href="https://www.mythrillfiction.com/the-dark-rider" alt="Mythrill" target="_blank">
-    <div class="unique-card">
-        <div class="unique-wrapper">
-            <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg"
-                class="unique-cover-image" />
+<div class="before-after-container">
+    <div class="container">
+        <div class="image-container">
+            <img class="image-before slider-image"
+                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                alt="color photo" />
+            <img class="image-after slider-image"
+                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                alt="black and white" />
         </div>
-        <!-- <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png" class="unique-title" /> -->
-        <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="unique-character" />
+        <!-- step="10" -->
+        <input type="range" min="0" max="100" value="50" aria-label="Percentage of before photo shown" class="slider" />
+        <div class="slider-line" aria-hidden="true"></div>
+        <div class="slider-button" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 256 256">
+                <rect width="256" height="256" fill="none"></rect>
+                <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="16"></line>
+                <line x1="96" y1="128" x2="16" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="16"></line>
+                <polyline points="48 160 16 128 48 96" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="16"></polyline>
+                <line x1="160" y1="128" x2="240" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="16"></line>
+                <polyline points="208 96 240 128 208 160" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="16"></polyline>
+            </svg>
+        </div>
     </div>
-</a>
-
+</div>
 
 
 <?php 
