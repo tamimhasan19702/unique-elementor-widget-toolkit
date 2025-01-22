@@ -85,7 +85,6 @@ class Unique_Button extends Widget_Base {
             ]
         );
 
-
         $this->add_control(
             'button_type',
             [
@@ -110,45 +109,55 @@ class Unique_Button extends Widget_Base {
             ]
         );
 
-$this->add_control(
-    'button_link',
-    [
-        'label' => __( 'Button Link', 'unique-elementor-widget-toolkit' ),
-        'type' => Controls_Manager::URL,
-        'placeholder' => __( 'https://your-link.com', 'unique-elementor-widget-toolkit' ),
-        'show_external' => true,
-        'default' => [
-            'url' => '',
-            'is_external' => false,
-            'nofollow' => true,
-        ],
-    ]
-);
+        $this->add_control(
+            'button_link',
+            [
+                'label' => __( 'Button Link', 'unique-elementor-widget-toolkit' ),
+                'type' => Controls_Manager::URL,
+                'placeholder' => __( 'https://your-link.com', 'unique-elementor-widget-toolkit' ),
+                'show_external' => true,
+                'default' => [
+                    'url' => '',
+                    'is_external' => false,
+                    'nofollow' => true,
+                ],
+            ]
+        );
 
-$this->add_control(
-    'button_icon',
-    [
-        'label' => __( 'Button Icon', 'unique-elementor-widget-toolkit' ),
-        'type' => Controls_Manager::ICONS,
-        'default' => [
-            'value' => 'fas fa-star',
-            'library' => 'solid',
-        ],
-    ]
-);
+        $this->add_control(
+            'button_icon',
+            [
+                'label' => __( 'Button Icon', 'unique-elementor-widget-toolkit' ),
+                'type' => Controls_Manager::ICONS,
+                'default' => [
+                    'value' => 'fas fa-star',
+                    'library' => 'solid',
+                ],
+            ]
+        );
 
-$this->add_control(
-    'custom_button_id',
-    [
-        'label' => __( 'Custom Button ID', 'unique-elementor-widget-toolkit' ),
-        'type' => Controls_Manager::TEXT,
-        'default' => '',
-        'placeholder' => __( 'Enter custom ID', 'unique-elementor-widget-toolkit' ),
-    ]
-);
+        $this->add_control(
+            'icon_position',
+            [
+                'label' => __( 'Icon Position', 'unique-elementor-widget-toolkit' ),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'left',
+                'options' => [
+                    'left' => __( 'Left', 'unique-elementor-widget-toolkit' ),
+                    'right' => __( 'Right', 'unique-elementor-widget-toolkit' ),
+                ],
+            ]
+        );
 
-
-       
+        $this->add_control(
+            'custom_button_id',
+            [
+                'label' => __( 'Custom Button ID', 'unique-elementor-widget-toolkit' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => '',
+                'placeholder' => __( 'Enter custom ID', 'unique-elementor-widget-toolkit' ),
+            ]
+        );
 
         $this->end_controls_section();
     }
@@ -206,8 +215,21 @@ $this->add_control(
     
         ?>
 
-​<button class="bubbly-button" id="<?php echo $settings['custom_button_id'] ?>"
-    data-type="<?php echo $settings['button_type']; ?>"><?php echo $settings['button_text']; ?></button>
+<button class="bubbly-button" id="<?php echo $settings['custom_button_id']; ?>"
+    data-type="<?php echo $settings['button_type']; ?>">
+
+    <?php if($settings['icon_position'] == 'left') : ?>
+    <span
+        class="button-icon icon-left"><?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true']); ?></span>
+    <?php endif; ?>
+
+    <?php echo $settings['button_text']; ?>
+
+    <?php if($settings['icon_position'] == 'right') : ?>
+    <span
+        class="button-icon icon-right"><?php \Elementor\Icons_Manager::render_icon($settings['button_icon'], ['aria-hidden' => 'true']); ?></span>
+    <?php endif; ?>
+</button>
 
 
 
