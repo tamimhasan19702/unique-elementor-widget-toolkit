@@ -1,181 +1,109 @@
 <!-- @format -->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
     <style>
-      img {
-        display: block;
-        max-width: 100%;
+      :root {
+        --main: ##1e1f26;
+        --accent: #b3b3b3;
+        --white: #fff;
+        --signal: #e31b2c;
       }
 
-      .before-after-container {
-        display: grid;
-        place-items: center;
-        min-height: 100vh;
-      }
-
-      .container {
-        display: grid;
-        place-content: center;
-        position: relative;
-        overflow: hidden;
+      .card {
+        background: url(https://images.unsplash.com/photo-1625595092803-545388db5615?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60);
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 3em 0 0 0;
+        margin-top: 2rem;
+        max-width: 400px;
         border-radius: 1rem;
-        --position: 50%;
+        overflow: hidden;
+        transition: ease-in-out 0.3s;
+        box-shadow: 5px 8px 12px 2px rgba(255, 163, 135, 0.2);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        transform: scale(0.7);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
 
-      .image-container {
-        max-width: 800px;
-        max-height: 90vh;
-        aspect-ratio: 1/1;
-      }
-
-      .slider-image {
-        width: 100%;
+      .card-content {
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.2) 10%,
+          rgba(0, 0, 0, 0.4) 20%,
+          rgba(0, 0, 0, 1) 100%
+        );
+        padding: 1em 2em;
+        color: var(--white);
+        transform: translateY(24em);
+        transition: ease-in-out 0.5s;
         height: 100%;
-        object-fit: cover;
-        object-position: left;
       }
 
-      .image-before {
-        position: absolute;
-        inset: 0;
-        width: var(--position);
-        filter: grayscale(100%);
+      .card-titel {
+        position: relative;
+        z-index: 2;
       }
-
-      .slider {
+      .card:hover {
+        transform: scale(1.02);
+      }
+      .card:hover .card-titel::after {
+        transform: translateX(-10%);
+      }
+      .card:hover .card-content {
+        transform: translateY(0);
+      }
+      .card-titel::after {
+        content: "";
+        height: 4px;
+        width: 100%;
+        background-color: var(--signal);
         position: absolute;
-        inset: 0;
+        bottom: 4px;
+        left: 0;
+        transform: translateX(-90%);
+        transition: ease-in-out 0.5s;
+        transition-delay: 0.5s;
+        z-index: -1;
+      }
+      .card-button {
+        display: inline-block;
+        padding: 0.5rem 2rem;
+        border-radius: 0.2rem;
+        background-color: var(--signal);
         cursor: pointer;
-        opacity: 0;
-        /* for Firefox */
-        width: 100%;
-        height: 100%;
+        font-weight: 700;
       }
 
-      .slider:focus-visible ~ .slider-button {
-        outline: 5px solid black;
-        outline-offset: 3px;
-      }
-
-      .slider-line {
-        position: absolute;
-        inset: 0;
-        width: 0.2rem;
-        height: 100%;
-        background-color: #fff;
-        /* z-index: 10; */
-        left: var(--position);
-        transform: translateX(-50%);
-        pointer-events: none;
-      }
-
-      .slider-button {
-        position: absolute;
-        background-color: #fff;
-        color: black;
-        padding: 0.5rem;
-        border-radius: 100vw;
-        display: grid;
-        place-items: center;
-        top: 50%;
-        left: var(--position);
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-        /* z-index: 100; */
-        box-shadow: 1px 1px 1px hsl(0, 50%, 2%, 0.5);
+      .card-button:hover,
+      .card-button:focus {
+        background-color: var(--accent);
       }
     </style>
   </head>
-
   <body>
-    <div class="before-after-container">
-      <div class="container">
-        <div class="image-container">
-          <img
-            class="image-before slider-image"
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-            alt="color photo" />
-          <img
-            class="image-after slider-image"
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-            alt="black and white" />
-        </div>
-        <!-- step="10" -->
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value="50"
-          aria-label="Percentage of before photo shown"
-          class="slider" />
-        <div class="slider-line" aria-hidden="true"></div>
-        <div class="slider-button" aria-hidden="true">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="currentColor"
-            viewBox="0 0 256 256">
-            <rect width="256" height="256" fill="none"></rect>
-            <line
-              x1="128"
-              y1="40"
-              x2="128"
-              y2="216"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"></line>
-            <line
-              x1="96"
-              y1="128"
-              x2="16"
-              y2="128"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"></line>
-            <polyline
-              points="48 160 16 128 48 96"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"></polyline>
-            <line
-              x1="160"
-              y1="128"
-              x2="240"
-              y2="128"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"></line>
-            <polyline
-              points="208 96 240 128 208 160"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="16"></polyline>
-          </svg>
-        </div>
+    <div class="card">
+      <div class="card-content">
+        <h1 class="card-titel">Lorem ipsum</h1>
+        <p class="card-description">
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+          ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+          sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+          et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+          takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+        <a class="card-button">Lorem </a>
       </div>
     </div>
-
-    <script>
-      const container = document.querySelector(".container");
-      document.querySelector(".slider").addEventListener("input", (e) => {
-        container.style.setProperty("--position", `${e.target.value}%`);
-      });
-    </script>
   </body>
 </html>

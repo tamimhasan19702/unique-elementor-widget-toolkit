@@ -7,13 +7,13 @@ use Elementor\Controls_Manager;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
- * Unique Before After
+ * Unique Info Card
  *
- * Elementor widget for Unique Before After
+ * Elementor widget for Unique Info Card
  *
  * @since 1.0.0
  */
-class Unique_Before_After extends Widget_Base {
+class Unique_Info_Card extends Widget_Base {
 
     /**
      * Retrieve the widget name.
@@ -25,7 +25,7 @@ class Unique_Before_After extends Widget_Base {
      * @return string Widget name.
      */
     public function get_name() {
-        return 'unique-before-after';
+        return 'unique-info-card';
     }
 
     /**
@@ -38,7 +38,7 @@ class Unique_Before_After extends Widget_Base {
      * @return string Widget title.
      */
     public function get_title() {
-        return __( 'Unique Before After', 'unique-elementor-widget-toolkit' );
+        return __( 'Unique Info Card', 'unique-elementor-widget-toolkit' );
     }
 
     /**
@@ -51,7 +51,7 @@ class Unique_Before_After extends Widget_Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'eicon-image';
+        return 'eicon-info-box';
     }
 
     /**
@@ -122,13 +122,9 @@ class Unique_Before_After extends Widget_Base {
     }
 
     public function get_style_depends(): array {
-		return [ 'uewtk-before-after-css' ];
+		return [ 'uewtk-cool-card' ];
 	}
 
-
-    public function get_script_depends(): array {
-        return [ 'uewtk-before-after-js' ];
-    }
 
     /**
      * Register the widget controls.
@@ -158,36 +154,24 @@ class Unique_Before_After extends Widget_Base {
     
         ?>
 
-<div class="before-after-container">
-    <div class="container">
-        <div class="image-container">
-            <img class="image-before slider-image"
-                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                alt="color photo" />
-            <img class="image-after slider-image"
-                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                alt="black and white" />
-        </div>
-        <!-- step="10" -->
-        <input type="range" min="0" max="100" value="50" aria-label="Percentage of before photo shown" class="slider" />
-        <div class="slider-line" aria-hidden="true"></div>
-        <div class="slider-button" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 256 256">
-                <rect width="256" height="256" fill="none"></rect>
-                <line x1="128" y1="40" x2="128" y2="216" fill="none" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="16"></line>
-                <line x1="96" y1="128" x2="16" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="16"></line>
-                <polyline points="48 160 16 128 48 96" fill="none" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="16"></polyline>
-                <line x1="160" y1="128" x2="240" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="16"></line>
-                <polyline points="208 96 240 128 208 160" fill="none" stroke="currentColor" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="16"></polyline>
-            </svg>
-        </div>
+<div class="card">
+    <div class="card-content">
+        <h1 class="card-titel">Lorem ipsum</h1>
+        <p class="card-description">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+            sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+            ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+            dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+            takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+        <a class="card-button">Lorem </a>
     </div>
 </div>
+
 
 
 <?php 
