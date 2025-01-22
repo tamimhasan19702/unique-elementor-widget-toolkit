@@ -4,6 +4,7 @@ namespace UniqueElementorToolkit;
 
 use UniqueElementorToolkit\PageSettings\Page_Settings;
 use UniqueElementorToolkit\Widgets\Unique_Cool_Card;
+use UniqueElementorToolkit\Widgets\Unique_Button;
 
 
 class Plugin {
@@ -27,11 +28,13 @@ class Plugin {
 
         // css
         wp_enqueue_style( 'uewtk-cool-card', plugins_url( '/assets/widgets-css/uewtk-cool-card.css', __FILE__ ) );
-      wp_enqueue_style( 'uewtk-info-card', plugins_url( '/assets/widgets-css/uewtk-info-card.css', __FILE__ ) );
-
+        wp_enqueue_style( 'uewtk-button-css', plugins_url( '/assets/widgets-css/uewtk-button.css', __FILE__ ) );
+    
         // js
-      
+        wp_enqueue_script('uewtk-button-js', plugins_url( '/assets/widgets-js/uewtk-button.js', __FILE__ ), array( 'jquery' ), '1.0.0', true);
+
     }
+
 
     public function editor_scripts() {
         add_filter( 'script_loader_tag', [ $this, 'editor_scripts_as_a_module' ], 10, 2 );
@@ -56,10 +59,12 @@ class Plugin {
         
 
         require_once( __DIR__ . '/widgets/uewtk-cool-card.php' );
+        require_once( __DIR__ . '/widgets/uewtk-button.php' );
       
 
      
         $widgets_manager->register( new Unique_Cool_Card() );
+        $widgets_manager->register( new Unique_Button() );
        
     }
 
