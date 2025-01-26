@@ -2,16 +2,17 @@
 
 @font-face {
   font-family: "uewtk";
-  src: url("../fonts/uewtk_font.woff2") format("woff2"),
+  src:
+    url("../fonts/uewtk_font.woff2") format("woff2"),
     url("../fonts/uewtk_font.woff") format("woff"),
-    url("../fonts/uewtk_font.eot#iefix") format("embedded-opentype"),
+    url("../fonts/uewtk_font.eot") format("embedded-opentype"),
     url("../fonts/uewtk_font.ttf") format("truetype"),
-    url("../fonts/uewtk_font.svg?") format("svg");
+    url("../fonts/uewtk_font.svg") format("svg");
 }
 
 i[class^="uewtk-"]:before,
 i[class*=" uewtk-"]:before {
-  font-family: uewtk !important;
+  font-family: "uewtk" !important;
   font-style: normal;
   font-weight: normal !important;
   font-variant: normal;
@@ -19,6 +20,22 @@ i[class*=" uewtk-"]:before {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.uewtk_label::after {
+  content: "UEWTK";
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  border: 1px solid #a7a7a7;
+  border-radius: 3px;
+  color: #a7a7a7;
+  font-size: 8px;
+  padding: 1px 3px;
+  line-height: 10px;
+  font-family: "Open Sans", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  display: inline-block;
 }
 
 .uewtk-concentration:before {

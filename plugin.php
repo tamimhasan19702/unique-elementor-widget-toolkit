@@ -26,6 +26,9 @@ class Unique_Elementor_Widget_Toolkit {
      */
     public function widget_scripts() {
 
+        // icon
+        wp_enqueue_style( 'uewtk-icon', plugins_url( '/assets/widgets-css/uewtk-icon.css', __FILE__ ) );
+
         // css
         wp_enqueue_style( 'uewtk-cool-card', plugins_url( '/assets/widgets-css/uewtk-cool-card.css', __FILE__ ) );
         wp_enqueue_style( 'uewtk-button-css', plugins_url( '/assets/widgets-css/uewtk-button.css', __FILE__ ) );

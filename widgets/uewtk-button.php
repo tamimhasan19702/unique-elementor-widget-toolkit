@@ -51,7 +51,7 @@ class Unique_Button extends Widget_Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'eicon-button';
+        return 'uewtk-phone-book';
     }
 
     /**
@@ -179,7 +179,7 @@ class Unique_Button extends Widget_Base {
     }
 
     public function get_style_depends(): array {
-		return [ 'uewtk-button-css' ];
+		return [ 'uewtk-button-css', 'uewtk-icon' ];
 	}
 
     public function get_script_depends(): array {
