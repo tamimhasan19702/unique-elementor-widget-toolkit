@@ -7,7 +7,7 @@ use UniqueElementorToolkit\Widgets\Unique_Cool_Card;
 use UniqueElementorToolkit\Widgets\Unique_Button;
 
 
-class Plugin {
+class Unique_Elementor_Widget_Toolkit {
     private static $_instance = null;
 
     public static function instance() {
@@ -133,16 +133,28 @@ class Plugin {
         echo '<div id="root"></div>';	
     }
 
+
+    public function plugin_action_links( $links ) {
+    $settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=unique-elementor-widget-toolkit' ) ) . '">' . esc_html__( 'Settings', 'unique-elementor-widget-toolkit' ) . '</a>';
+    array_unshift( $links, $settings_link );
+    return $links;
+}
+
     public function __construct() {
+        // add actions
         add_action('elementor/frontend/after_register_scripts', [$this, 'widget_scripts']);
         add_action('elementor/widgets/register', [$this, 'register_widgets']);
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'editor_scripts']);
         add_action('elementor/elements/categories_registered', [$this, 'register_category']);
         add_action('admin_enqueue_scripts', [$this, 'uewtk_react_enqueue_scripts']);
         add_action('admin_menu', [$this, 'uewtk_admin_menu']);
+
+        // add filters
+        add_filter('plugin_action_links_' . UEWTK_BASE , [$this, 'plugin_action_links']);
+        
         $this->add_page_settings_controls();
     }
 }
 
 // Instantiate Plugin Class
-Plugin::instance();
+Unique_Elementor_Widget_Toolkit::instance();

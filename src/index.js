@@ -5,7 +5,7 @@ import { createRoot } from "@wordpress/element";
 import "./index.scss";
 
 const HelloReactPage = () => {
-  return <h1>Hello Reacttttt</h1>;
+  return <h1>Hi i am React</h1>;
 };
 
 domReady(() => {

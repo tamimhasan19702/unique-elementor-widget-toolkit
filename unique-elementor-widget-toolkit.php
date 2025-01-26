@@ -6,11 +6,27 @@
  * Author:      Tareq Monower
  * Author URI:  https://profiles.wordpress.org/tamimh
  * Text Domain: unique-elementor-widget-toolkit
- * Elementor tested up to: 3.5.0
- * Elementor Pro tested up to: 3.5.0
+ * Elementor tested up to: 3.6.0
+ * Elementor Pro tested up to: 3.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+
+
+
+
+define( 'UEWTK_VERSION', '1.0.0' );
+define( 'UEWTK__FILE__', __FILE__ );
+define( 'UEWTK_BASE', plugin_basename( __FILE__ ) );
+define( 'UEWTK_DIR_PATH', plugin_dir_path( UEWTK__FILE__ ) );
+define( 'UEWTK_DIR_URL', plugin_dir_url( UEWTK__FILE__ ) );
+define( 'UEWTK_ASSETS', trailingslashit( UEWTK_DIR_URL . 'assets' ) );
+define( 'UEWTK_WIDGET', trailingslashit( UEWTK_DIR_PATH . 'widgets' ) );
+
+
+
+
 
 /**
  * Main Elementor Hello World Class
@@ -25,13 +41,17 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  */
 final class Unique_Elementor_Widget_Toolkit {
 
+
+	const PAGE_SLUG = 'unique-elementor-widget-toolkit';
+
+
 	/**
 	 * Plugin Version
 	 *
 	 * @since 1.2.1
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.2.1';
+	const VERSION = '1.0.0';
 
 	/**
 	 * Minimum Elementor Version
@@ -112,9 +132,9 @@ final class Unique_Elementor_Widget_Toolkit {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'elementor-hello-world' ),
-			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'elementor-hello-world' ) . '</strong>'
+			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'unique_elementor_widget_toolkit' ),
+			'<strong>' . esc_html__( 'Unique Toolkit', 'unique_elementor_widget_toolkit' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'unique_elementor_widget_toolkit' ) . '</strong>'
 		);
 
 		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
@@ -135,9 +155,9 @@ final class Unique_Elementor_Widget_Toolkit {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
-			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'elementor-hello-world' ) . '</strong>',
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'unique_elementor_widget_toolkit' ),
+			'<strong>' . esc_html__( 'Unique Toolkit', 'unique_elementor_widget_toolkit' ) . '</strong>',
+			'<strong>' . esc_html__( 'Elementor', 'unique_elementor_widget_toolkit' ) . '</strong>',
 			self::MINIMUM_ELEMENTOR_VERSION
 		);
 
@@ -159,9 +179,9 @@ final class Unique_Elementor_Widget_Toolkit {
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'elementor-hello-world' ),
-			'<strong>' . esc_html__( 'Elementor Hello World', 'elementor-hello-world' ) . '</strong>',
-			'<strong>' . esc_html__( 'PHP', 'elementor-hello-world' ) . '</strong>',
+			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'unique_elementor_widget_toolkit' ),
+			'<strong>' . esc_html__( 'Unique Toolkit', 'unique_elementor_widget_toolkit' ) . '</strong>',
+			'<strong>' . esc_html__( 'PHP', 'unique_elementor_widget_toolkit' ) . '</strong>',
 			self::MINIMUM_PHP_VERSION
 		);
 
