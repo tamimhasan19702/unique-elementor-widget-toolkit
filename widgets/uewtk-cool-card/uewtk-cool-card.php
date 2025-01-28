@@ -51,7 +51,7 @@ class Unique_Cool_Card extends Widget_Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'icon-music uewtk-label';
+        return 'eicon-ehp-hero uewtk-label';
     }
 
     /**
@@ -153,7 +153,7 @@ class Unique_Cool_Card extends Widget_Base {
         $settings = $this->get_settings_for_display();
     
         ?>
-<i class="icon-music"></i>
+
 
 
 <a href="https://www.mythrillfiction.com/the-dark-rider" alt="Mythrill" target="_blank">

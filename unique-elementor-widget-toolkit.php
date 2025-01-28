@@ -22,7 +22,7 @@ define( 'UEWTK_BASE', plugin_basename( __FILE__ ) );
 define( 'UEWTK_DIR_PATH', plugin_dir_path( UEWTK__FILE__ ) );
 define( 'UEWTK_DIR_URL', plugin_dir_url( UEWTK__FILE__ ) );
 define( 'UEWTK_ASSETS', trailingslashit( UEWTK_DIR_URL . 'assets' ) );
-define( 'UEWTK_WIDGET', trailingslashit( UEWTK_DIR_PATH . 'widgets' ) );
+define( 'UEWTK_WIDGETS', trailingslashit( UEWTK_DIR_PATH . 'widgets' ) );
 
 
 

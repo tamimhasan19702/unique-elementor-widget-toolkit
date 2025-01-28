@@ -53,34 +53,25 @@ $this->add_page_settings_controls();
      */
     public function widget_scripts() {
 
-        wp_enqueue_style('uewtk-icons', plugins_url( '/assets/css/uewtk-icons.css', __FILE__ ));
+        wp_enqueue_style('uewtk-icons', UEWTK_ASSETS .'css/uewtk-icons.css', null, UEWTK_VERSION);
 
         // css
-        wp_enqueue_style( 'uewtk-cool-card', plugins_url( '/assets/widgets-css/uewtk-cool-card.css', __FILE__ ) );
-        wp_enqueue_style( 'uewtk-button-css', plugins_url( '/assets/widgets-css/uewtk-button.css', __FILE__ ) );
+        wp_enqueue_style( 'uewtk-cool-card',   UEWTK_ASSETS .'widgets-css/uewtk-cool-card.css', null, UEWTK_VERSION  );
+        wp_enqueue_style( 'uewtk-button-css',   UEWTK_ASSETS .'widgets-css/uewtk-button.css', null, UEWTK_VERSION  );
     
         // js
-        wp_enqueue_script('uewtk-button-js', plugins_url( '/assets/widgets-js/uewtk-button.js', __FILE__ ), array( 'jquery' ), '1.0.0', true);
+        wp_enqueue_script('uewtk-button-js', UEWTK_ASSETS .'widgets-js/uewtk-button.js', ['jquery'], UEWTK_VERSION, true);
 
     }
 
     public function editor_enqueue_styles() {
-        wp_enqueue_style('uewtk-icons', plugins_url( '/assets/css/uewtk-icons.css', __FILE__ ));
-        wp_enqueue_style('uewtk-editor-style', plugins_url( '/assets/css/uewtk-editor.css', __FILE__ ));
+        wp_enqueue_style('uewtk-icons', UEWTK_ASSETS .'css/uewtk-icons.css');
+        wp_enqueue_style('uewtk-editor-style', UEWTK_ASSETS .'css/uewtk-editor.css', null, UEWTK_VERSION);
     }
 
 
     public function editor_scripts() {
         add_filter( 'script_loader_tag', [ $this, 'editor_scripts_as_a_module' ], 10, 2 );
-
-        wp_enqueue_script(
-            'elementor-hello-world-editor',
-            plugins_url( '/assets/js/editor/editor.js', __FILE__ ),
-            [ 'elementor-editor' ],
-            '1.2.1',
-            true
-        );
-
 
     }
 
@@ -94,8 +85,8 @@ $this->add_page_settings_controls();
     public function register_widgets( $widgets_manager ) {
         
 
-        require_once( __DIR__ . '/widgets/uewtk-cool-card.php' );
-        require_once( __DIR__ . '/widgets/uewtk-button.php' );
+        require_once( __DIR__ . '/widgets/uewtk-button/uewtk-button.php' );
+        require_once( __DIR__ . '/widgets/uewtk-cool-card/uewtk-cool-card.php' );
       
 
      
