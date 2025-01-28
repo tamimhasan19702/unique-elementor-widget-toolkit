@@ -10,12 +10,39 @@ use UniqueElementorToolkit\Widgets\Unique_Button;
 class Unique_Elementor_Widget_Toolkit {
     private static $_instance = null;
 
+    public function __construct() {
+        
+    }
+
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
             self::$_instance = new self();
+            self::$_instance->init();
         }
         return self::$_instance;
     }
+
+    public function init(){
+// add actions
+add_action('elementor/frontend/after_register_scripts', [$this, 'widget_scripts']);
+add_action('elementor/widgets/register', [$this, 'register_widgets']);
+add_action('elementor/editor/after_enqueue_scripts', [$this, 'editor_scripts']);
+add_action('elementor/elements/categories_registered', [$this, 'register_category']);
+add_action('admin_enqueue_scripts', [$this, 'uewtk_react_enqueue_scripts']);
+add_action('admin_menu', [$this, 'uewtk_admin_menu']);
+// Register editor style.
+add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'editor_enqueue_styles' ) );
+add_action('elementor/icons_manager/registered', [$this, 'register_custom_icons']);
+
+
+// add filters
+add_filter('plugin_action_links_' . UEWTK_BASE , [$this, 'plugin_action_links']);
+
+$this->add_page_settings_controls();
+    }
+
+
+  
 
     /**
      * Enqueue widget styles
@@ -26,8 +53,7 @@ class Unique_Elementor_Widget_Toolkit {
      */
     public function widget_scripts() {
 
-        // icon
-        wp_enqueue_style( 'uewtk-icon', plugins_url( '/assets/widgets-css/uewtk-icon.css', __FILE__ ) );
+        
 
         // css
         wp_enqueue_style( 'uewtk-cool-card', plugins_url( '/assets/widgets-css/uewtk-cool-card.css', __FILE__ ) );
@@ -36,6 +62,10 @@ class Unique_Elementor_Widget_Toolkit {
         // js
         wp_enqueue_script('uewtk-button-js', plugins_url( '/assets/widgets-js/uewtk-button.js', __FILE__ ), array( 'jquery' ), '1.0.0', true);
 
+    }
+
+    public function editor_enqueue_styles() {
+       
     }
 
 
@@ -49,6 +79,8 @@ class Unique_Elementor_Widget_Toolkit {
             '1.2.1',
             true
         );
+
+
     }
 
     public function editor_scripts_as_a_module( $tag, $handle ) {
@@ -74,6 +106,10 @@ class Unique_Elementor_Widget_Toolkit {
     private function add_page_settings_controls() {
         require_once( __DIR__ . '/page-settings/manager.php' );
         new Page_Settings();
+    }
+
+    public function register_custom_icons($icons_manager) {
+        
     }
     
 
@@ -143,20 +179,7 @@ class Unique_Elementor_Widget_Toolkit {
     return $links;
 }
 
-    public function __construct() {
-        // add actions
-        add_action('elementor/frontend/after_register_scripts', [$this, 'widget_scripts']);
-        add_action('elementor/widgets/register', [$this, 'register_widgets']);
-        add_action('elementor/editor/after_enqueue_scripts', [$this, 'editor_scripts']);
-        add_action('elementor/elements/categories_registered', [$this, 'register_category']);
-        add_action('admin_enqueue_scripts', [$this, 'uewtk_react_enqueue_scripts']);
-        add_action('admin_menu', [$this, 'uewtk_admin_menu']);
 
-        // add filters
-        add_filter('plugin_action_links_' . UEWTK_BASE , [$this, 'plugin_action_links']);
-        
-        $this->add_page_settings_controls();
-    }
 }
 
 // Instantiate Plugin Class

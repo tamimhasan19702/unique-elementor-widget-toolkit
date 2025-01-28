@@ -154,6 +154,8 @@ class Unique_Cool_Card extends Widget_Base {
     
         ?>
 
+
+
 <a href="https://www.mythrillfiction.com/the-dark-rider" alt="Mythrill" target="_blank">
     <div class="unique-card">
         <div class="unique-wrapper">

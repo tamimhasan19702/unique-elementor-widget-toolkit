@@ -215,6 +215,7 @@ class Unique_Button extends Widget_Base {
     
         ?>
 
+
 <button class="bubbly-button" id="<?php echo $settings['custom_button_id']; ?>"
     data-type="<?php echo $settings['button_type']; ?>">
 
