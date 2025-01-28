@@ -51,7 +51,7 @@ class Unique_Cool_Card extends Widget_Base {
      * @return string Widget icon.
      */
     public function get_icon() {
-        return 'eicon-info-box';
+        return 'icon-music uewtk-label';
     }
 
     /**
@@ -122,7 +122,7 @@ class Unique_Cool_Card extends Widget_Base {
     }
 
     public function get_style_depends(): array {
-		return [ 'uewtk-cool-card' ];
+		return [ 'uewtk-cool-card', 'uewtk-icons' ,'uewtk-editor-style'];
 	}
 
 
@@ -153,7 +153,7 @@ class Unique_Cool_Card extends Widget_Base {
         $settings = $this->get_settings_for_display();
     
         ?>
-
+<i class="icon-music"></i>
 
 
 <a href="https://www.mythrillfiction.com/the-dark-rider" alt="Mythrill" target="_blank">

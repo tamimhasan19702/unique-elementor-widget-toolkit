@@ -179,7 +179,7 @@ class Unique_Button extends Widget_Base {
     }
 
     public function get_style_depends(): array {
-		return [ 'uewtk-button-css', 'uewtk-icon' ];
+		return [ 'uewtk-button-css', 'uewtk-icons' ];
 	}
 
     public function get_script_depends(): array {
@@ -214,6 +214,8 @@ class Unique_Button extends Widget_Base {
         $settings = $this->get_settings_for_display();
     
         ?>
+
+<i class="icon-music"></i>
 
 
 <button class="bubbly-button" id="<?php echo $settings['custom_button_id']; ?>"

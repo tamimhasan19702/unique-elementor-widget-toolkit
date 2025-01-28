@@ -32,7 +32,7 @@ add_action('admin_enqueue_scripts', [$this, 'uewtk_react_enqueue_scripts']);
 add_action('admin_menu', [$this, 'uewtk_admin_menu']);
 // Register editor style.
 add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'editor_enqueue_styles' ) );
-add_action('elementor/icons_manager/registered', [$this, 'register_custom_icons']);
+
 
 
 // add filters
@@ -53,7 +53,7 @@ $this->add_page_settings_controls();
      */
     public function widget_scripts() {
 
-        
+        wp_enqueue_style('uewtk-icons', plugins_url( '/assets/css/uewtk-icons.css', __FILE__ ));
 
         // css
         wp_enqueue_style( 'uewtk-cool-card', plugins_url( '/assets/widgets-css/uewtk-cool-card.css', __FILE__ ) );
@@ -65,7 +65,8 @@ $this->add_page_settings_controls();
     }
 
     public function editor_enqueue_styles() {
-       
+        wp_enqueue_style('uewtk-icons', plugins_url( '/assets/css/uewtk-icons.css', __FILE__ ));
+        wp_enqueue_style('uewtk-editor-style', plugins_url( '/assets/css/uewtk-editor.css', __FILE__ ));
     }
 
 
@@ -107,11 +108,6 @@ $this->add_page_settings_controls();
         require_once( __DIR__ . '/page-settings/manager.php' );
         new Page_Settings();
     }
-
-    public function register_custom_icons($icons_manager) {
-        
-    }
-    
 
     public function register_category() {
         \Elementor\Plugin::instance()->elements_manager->add_category(
