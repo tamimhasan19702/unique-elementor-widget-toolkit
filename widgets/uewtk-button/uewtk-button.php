@@ -3,6 +3,12 @@ namespace UniqueElementorToolkit\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use Elementor\Group_Control_Background;
+use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Text_Shadow;
+use Elementor\Group_Control_Typography;
 
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -108,12 +114,10 @@ class Unique_Button extends Widget_Base {
 				'label' => __( 'Button Type', 'unique-elementor-widget-toolkit' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
-					'default' => __( 'Default', 'unique-elementor-widget-toolkit' ),
+					'button' => __( 'Button', 'unique-elementor-widget-toolkit' ),
 					'link' => __( 'Link', 'unique-elementor-widget-toolkit' ),
-					'success' => __( 'Success', 'unique-elementor-widget-toolkit' ),
-					'error' => __( 'Error', 'unique-elementor-widget-toolkit' ),
 				],
-				'default' => 'default',
+				'default' => 'button',
 			)
 		);
 
@@ -200,7 +204,7 @@ class Unique_Button extends Widget_Base {
 		);
       
 
-        $this->add_control(
+        $this->add_responsive_control(
 			'icon_indent',
 			array(
 				'label'     => __( 'Icon Spacing', 'unique-elementor-widget-toolkit' ),
@@ -236,6 +240,15 @@ class Unique_Button extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'onclick_event',
+			array(
+				'label'       => esc_html__( 'onClick Event', 'unique-elementor-widget-toolkit' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => 'myFunction()',
+			)
+		);
+
         $this->end_controls_section();
     }
 
@@ -251,14 +264,25 @@ class Unique_Button extends Widget_Base {
 		);
 
 
-        $this->add_group_control(
-			Group_Control_Typography::get_type(),
+        $this->add_responsive_control(
+			'button_width',
 			array(
-				'name'     => 'typography',
-				'global'   => array(
-					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				'label'      => __( 'Width', 'unique-elementor-widget-toolkit' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', 'vw', '%' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 1,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 1,
+						'max' => 800,
+					),
 				),
-				'selector' => '{{WRAPPER}} .xpro-elementor-button',
+				'selectors'  => array(
+					'{{WRAPPER}} .uewtk-bubbly-button' => 'width: {{SIZE}}{{UNIT}}; max-width:100%;',
+				),
 			)
 		);
         

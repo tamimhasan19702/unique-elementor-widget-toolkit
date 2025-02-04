@@ -1,11 +1,6 @@
 /** @format */
 
-:root {
-  --main: #ff0081;
-  --light: #fff;
-}
-
-.bubbly-button {
+.uewtk-bubbly-button {
   font-family: "Helvetica", "Arial", sans-serif;
   display: inline-block;
   font-size: 1em;
@@ -26,16 +21,17 @@
   box-shadow: 0 2px 25px rgba(var(--main), 0.5);
 }
 
-.button-icon {
+.uewtk-button-icon {
   font-size: 1rem;
   color: var(--light);
 }
 
-.bubbly-button:focus {
+.uewtk-bubbly-button:focus {
   outline: 0;
 }
-.bubbly-button:before,
-.bubbly-button:after {
+
+.uewtk-bubbly-button:before,
+.uewtk-bubbly-button:after {
   position: absolute;
   content: "";
   display: block;
@@ -46,7 +42,8 @@
   transition: all ease-in-out 0.5s;
   background-repeat: no-repeat;
 }
-.bubbly-button:before {
+
+.uewtk-bubbly-button:before {
   display: none;
   top: -75%;
   background-image: radial-gradient(circle, var(--main) 20%, transparent 20%),
@@ -69,7 +66,8 @@
     10% 10%,
     18% 18%;
 }
-.bubbly-button:after {
+
+.uewtk-bubbly-button:after {
   display: none;
   bottom: -75%;
   background-image: radial-gradient(circle, var(--main) 20%, transparent 20%),
@@ -88,20 +86,24 @@
     10% 10%,
     20% 20%;
 }
-.bubbly-button:active {
+
+.uewtk-bubbly-button:active {
   transform: scale(0.9);
   background-color: #e60074;
   box-shadow: 0 2px 25px rgba(var(--main), 0.2);
 }
-.bubbly-button.animate:before {
+
+.uewtk-bubbly-button.uewtk-animate:before {
   display: block;
-  animation: topBubbles ease-in-out 0.75s forwards;
+  animation: uewtk-topBubbles ease-in-out 0.75s forwards;
 }
-.bubbly-button.animate:after {
+
+.uewtk-bubbly-button.uewtk-animate:after {
   display: block;
-  animation: bottomBubbles ease-in-out 0.75s forwards;
+  animation: uewtk-bottomBubbles ease-in-out 0.75s forwards;
 }
-@keyframes topBubbles {
+
+@keyframes uewtk-topBubbles {
   0% {
     background-position:
       5% 90%,
@@ -146,7 +148,8 @@
       0% 0%;
   }
 }
-@keyframes bottomBubbles {
+
+@keyframes uewtk-bottomBubbles {
   0% {
     background-position:
       10% -10%,
@@ -185,5 +188,3 @@
       0% 0%;
   }
 }
-
-/* hover css */
