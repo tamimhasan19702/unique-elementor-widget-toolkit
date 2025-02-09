@@ -23,11 +23,11 @@ $hover_animation = ( '2d-transition' === $settings['hover_animation'] ) ? 'uewtk
 
 
 <<?php echo esc_attr( $html_tag ); ?> <?php uewtk_kses( $attr ); ?>
-    class="uewtk-elementor-button <?php echo esc_attr( $hover_animation ); ?> uewtk-align-icon-<?php echo esc_attr( 'left' === $settings['icon_align'] ? 'left' : 'right' ); ?>">
+    class="uewtk-elementor-button <?php echo esc_attr( $hover_animation ); ?> uewtk-align-icon-<?php echo ( 'left' === $settings['icon_align'] ) ? 'left' : 'right'; ?>">
     <span class="uewtk-elementor-button-inner">
-        <?php if ( ! empty( $settings['icon']['value'] ) ) { ?>
+        <?php if ( $settings['icon']['value'] ) { ?>
         <span
-            class="uewtk-elementor-button-media"><?php Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] ); ?></span>
+            class="uewtk-elementor-button-media"><?php Icons_Manager::render_icon( $settings['icon'], array( 'aria-hidden' => 'true' ) ); ?></span>
         <?php } ?>
         <span class="uewtk-button-text"><?php echo esc_html( $settings['text'] ); ?></span>
     </span>

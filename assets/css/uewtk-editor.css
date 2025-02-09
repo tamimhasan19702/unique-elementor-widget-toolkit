@@ -11,10 +11,10 @@
   right: 3px;
   background-color: var(--primary-color);
   color: var(--secondary-color);
-  font-size: 7px;
-  padding: 2px 4px;
-  border-radius: 10px;
-  line-height: 10px;
+  font-size: 8px;
+  padding: 3px 4px;
+  border-radius: 3px;
+  line-height: 3px;
   font-family: "Kanit", "Open Sans", Roboto, Helvetica, Arial, sans-serif;
   font-weight: 600;
   display: inline-block;

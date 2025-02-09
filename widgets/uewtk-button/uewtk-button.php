@@ -122,7 +122,7 @@ class Unique_Button extends Widget_Base {
 		);
 
         $this->add_control(
-			'button_text',
+			'text',
 			array(
 				'label'       => __( 'Button Text', 'unique-elementor-widget-toolkit' ),
 				'type'        => Controls_Manager::TEXT,
@@ -316,6 +316,238 @@ class Unique_Button extends Widget_Base {
 								{{WRAPPER}} .uewtk-elementor-button-hover-style-flipSlide::before',
 			)
 		);
+
+		$this->end_controls_tab();
+
+
+		$this->start_controls_tab(
+			'tab_button_hover',
+			array(
+				'label' => __( 'Hover', 'unique-elementor-widget-toolkit' ),
+			)
+		);
+
+		$this->add_control(
+			'hover_color',
+			array(
+				'label'     => __( 'Text Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-elementor-button:hover, {{WRAPPER}} .uewtk-elementor-button:focus'         => 'color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-elementor-button:hover svg, {{WRAPPER}} .uewtk-elementor-button:focus svg' => 'fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'     => 'button_background_hover',
+				'label'    => __( 'Background', 'unique-elementor-widget-toolkit' ),
+				'types'    => array( 'classic', 'gradient' ),
+				'exclude'  => array( 'image' ),
+				'selector' => '{{WRAPPER}} .uewtk-elementor-button-animation-none:hover,{{WRAPPER}} .uewtk-button-2d-animation:hover,
+								{{WRAPPER}} .uewtk-button-bg-animation::before,{{WRAPPER}} .uewtk-elementor-button-hover-style-bubbleFromDown::before,
+								{{WRAPPER}} .uewtk-elementor-button-hover-style-bubbleFromDown::after,{{WRAPPER}} .uewtk-elementor-button-hover-style-bubbleFromCenter::before,
+								{{WRAPPER}} .uewtk-elementor-button-hover-style-bubbleFromCenter::after,{{WRAPPER}} .uewtk-elementor-button-hover-style-flipSlide,
+								{{WRAPPER}} [class*=uewtk-elementor-button-hover-style-underline]:hover,{{WRAPPER}} .uewtk-elementor-button-hover-style-skewFill,
+								
+								{{WRAPPER}} .uewtk-elementor-button-animation-none:focus,{{WRAPPER}} .uewtk-button-2d-animation:focus,
+								{{WRAPPER}} [class*=uewtk-elementor-button-focus-style-underline]:focus',
+			)
+		);
+
+
+		$this->add_control(
+			'button_hover_border_color',
+			array(
+				'label'     => __( 'Border Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'condition' => array(
+					'border_border!'          => '',
+					'hover_unique_animation!' => array(
+						'underlineFromLeft',
+						'underlineFromRight',
+						'underlineFromCenter',
+						'underlineReveal',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-elementor-button:hover, {{WRAPPER}} .uewtk-elementor-button:focus' => 'border-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_hover_underline',
+			array(
+				'label'     => __( 'Line Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'condition' => array(
+					'hover_animation'        => 'unique',
+					'hover_unique_animation' => array(
+						'underlineFromLeft',
+						'underlineFromRight',
+						'underlineFromCenter',
+						'underlineReveal',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} [class*=uewtk-elementor-button-hover-style-underline]:before' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+
+		$this->add_control(
+			'hover_animation',
+			array(
+				'label'   => __( 'Hover Animation', 'unique-elementor-widget-toolkit' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'none',
+				'options' => array(
+					'none'                  => __( 'None', 'unique-elementor-widget-toolkit' ),
+					'2d-transition'         => __( '2D', 'unique-elementor-widget-toolkit' ),
+					'background-transition' => __( 'Background', 'unique-elementor-widget-toolkit' ),
+					'unique'                => __( 'Unique', 'unique-elementor-widget-toolkit' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'hover_2d_css_animation',
+			array(
+				'label'     => __( 'Animation Type', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'hvr-grow',
+				'options'   => array(
+					'hvr-grow'                   => __( 'Grow', 'unique-elementor-widget-toolkit' ),
+					'hvr-shrink'                 => __( 'Shrink', 'unique-elementor-widget-toolkit' ),
+					'hvr-pulse'                  => __( 'Pulse', 'unique-elementor-widget-toolkit' ),
+					'hvr-pulse-grow'             => __( 'Pulse Grow', 'unique-elementor-widget-toolkit' ),
+					'hvr-pulse-shrink'           => __( 'Pulse Shrink', 'unique-elementor-widget-toolkit' ),
+					'hvr-push'                   => __( 'Push', 'unique-elementor-widget-toolkit' ),
+					'hvr-pop'                    => __( 'Pop', 'unique-elementor-widget-toolkit' ),
+					'hvr-bounce-in'              => __( 'Bounce In', 'unique-elementor-widget-toolkit' ),
+					'hvr-bounce-out'             => __( 'Bounce Out', 'unique-elementor-widget-toolkit' ),
+					'hvr-rotate'                 => __( 'Rotate', 'unique-elementor-widget-toolkit' ),
+					'hvr-grow-rotate'            => __( 'Grow Rotate', 'unique-elementor-widget-toolkit' ),
+					'hvr-float'                  => __( 'Float', 'unique-elementor-widget-toolkit' ),
+					'hvr-sink'                   => __( 'Sink', 'unique-elementor-widget-toolkit' ),
+					'hvr-bob'                    => __( 'Bob', 'unique-elementor-widget-toolkit' ),
+					'hvr-hang'                   => __( 'Hang', 'unique-elementor-widget-toolkit' ),
+					'hvr-wobble-vertical'        => __( 'Wobble Vertical', 'unique-elementor-widget-toolkit' ),
+					'hvr-wobble-horizontal'      => __( 'Wobble Horizontal', 'unique-elementor-widget-toolkit' ),
+					'hvr-wobble-to-bottom-right' => __( 'Wobble To Bottom Right', 'unique-elementor-widget-toolkit' ),
+					'hvr-wobble-to-top-right'    => __( 'Wobble To Top Right', 'unique-elementor-widget-toolkit' ),
+					'hvr-buzz'                   => __( 'Buzz', 'unique-elementor-widget-toolkit' ),
+					'hvr-buzz-out'               => __( 'Buzz Out', 'unique-elementor-widget-toolkit' ),
+				),
+				'condition' => array(
+					'hover_animation' => '2d-transition',
+				),
+			)
+		);
+
+
+		$this->add_control(
+			'hover_background_css_animation',
+			array(
+				'label'     => __( 'Animation', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'hvr-sweep-to-right',
+				'options'   => array(
+					'hvr-sweep-to-right'         => __( 'Sweep To Right', 'unique-elementor-widget-toolkit' ),
+					'hvr-sweep-to-left'          => __( 'Sweep To Left', 'unique-elementor-widget-toolkit' ),
+					'hvr-sweep-to-bottom'        => __( 'Sweep To Bottom', 'unique-elementor-widget-toolkit' ),
+					'hvr-sweep-to-top'           => __( 'Sweep To Top', 'unique-elementor-widget-toolkit' ),
+					'hvr-bounce-to-right'        => __( 'Bounce To Right', 'unique-elementor-widget-toolkit' ),
+					'hvr-bounce-to-left'         => __( 'Bounce To Left', 'unique-elementor-widget-toolkit' ),
+					'hvr-bounce-to-bottom'       => __( 'Bounce To Bottom', 'unique-elementor-widget-toolkit' ),
+					'hvr-bounce-to-top'          => __( 'Bounce To Top', 'unique-elementor-widget-toolkit' ),
+					'hvr-radial-out'             => __( 'Radial Out', 'unique-elementor-widget-toolkit' ),
+					'hvr-radial-in'              => __( 'Radial In', 'unique-elementor-widget-toolkit' ),
+					'hvr-rectangle-in'           => __( 'Rectangle In', 'unique-elementor-widget-toolkit' ),
+					'hvr-rectangle-out'          => __( 'Rectangle Out', 'unique-elementor-widget-toolkit' ),
+					'hvr-shutter-in-horizontal'  => __( 'Shutter In Horizontal', 'unique-elementor-widget-toolkit' ),
+					'hvr-shutter-out-horizontal' => __( 'Shutter Out Horizontal', 'unique-elementor-widget-toolkit' ),
+					'hvr-shutter-in-vertical'    => __( 'Shutter In Vertical', 'unique-elementor-widget-toolkit' ),
+					'hvr-shutter-out-vertical'   => __( 'Shutter Out Vertical', 'unique-elementor-widget-toolkit' ),
+				),
+				'condition' => array(
+					'hover_animation' => 'background-transition',
+				),
+			)
+		);
+
+		$this->add_control(
+			'hover_unique_animation',
+			array(
+				'label'     => __( 'Animation', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'skewFill',
+				'options'   => array(
+					'underlineFromLeft'   => __( 'Underline From Left', 'unique-elementor-widget-toolkit' ),
+					'underlineFromRight'  => __( 'Underline From Right', 'unique-elementor-widget-toolkit' ),
+					'underlineFromCenter' => __( 'Underline From Center', 'unique-elementor-widget-toolkit' ),
+					'skewFill'            => __( 'Skew Fill', 'unique-elementor-widget-toolkit' ),
+					'flipSlide'           => __( 'Flip Slide', 'unique-elementor-widget-toolkit' ),
+					'bubbleFromDown'      => __( 'Bubble From Down', 'unique-elementor-widget-toolkit' ),
+					'bubbleFromCenter'    => __( 'Bubble From Center', 'unique-elementor-widget-toolkit' ),
+				),
+				'condition' => array(
+					'hover_animation' => 'unique',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'      => 'border',
+				'selector'  => '{{WRAPPER}} .unique-elementor-button',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'border_radius',
+			array(
+				'label'      => __( 'Border Radius', 'unique-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .unique-elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'button_box_shadow',
+				'selector' => '{{WRAPPER}} .unique-elementor-button',
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_padding',
+			array(
+				'label'      => __( 'Padding', 'unique-elementor-addons' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .unique-elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+
         
 
         $this->end_controls_section();
