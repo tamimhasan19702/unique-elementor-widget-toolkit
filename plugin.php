@@ -23,6 +23,9 @@ class Unique_Elementor_Widget_Toolkit {
     }
 
     public function init(){
+
+        $this->include_files();
+
 // add actions
 add_action('elementor/frontend/after_register_scripts', [$this, 'widget_scripts']);
 add_action('elementor/widgets/register', [$this, 'register_widgets']);
@@ -42,6 +45,12 @@ $this->add_page_settings_controls();
     }
 
 
+
+    public function include_files() {
+        require_once UEWTK_DIR_PATH . 'inc/uewtk_functions.php';
+       
+    }
+
   
 
     /**
@@ -54,6 +63,7 @@ $this->add_page_settings_controls();
     public function widget_scripts() {
 
         wp_enqueue_style('uewtk-icons', UEWTK_ASSETS .'css/uewtk-icons.css', null, UEWTK_VERSION);
+        wp_enqueue_style('uewtk-hover-effect', UEWTK_ASSETS .'css/uewtk-hover.css', null, UEWTK_VERSION);
 
         // css
         wp_enqueue_style( 'uewtk-cool-card',   UEWTK_ASSETS .'widgets-css/uewtk-cool-card.css', null, UEWTK_VERSION  );

@@ -264,35 +264,65 @@ class Unique_Button extends Widget_Base {
 		);
 
 
-        $this->add_responsive_control(
-			'button_width',
+        $this->add_group_control(
+			Group_Control_Typography::get_type(),
 			array(
-				'label'      => __( 'Width', 'unique-elementor-widget-toolkit' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', 'vw', '%' ),
-				'range'      => array(
-					'%'  => array(
-						'min' => 1,
-						'max' => 100,
-					),
-					'px' => array(
-						'min' => 1,
-						'max' => 800,
-					),
+				'name'     => 'typography',
+				'global'   => array(
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'selectors'  => array(
-					'{{WRAPPER}} .uewtk-bubbly-button' => 'width: {{SIZE}}{{UNIT}}; max-width:100%;',
+				'selector' => '{{WRAPPER}} .uewtk-elementor-button',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Text_Shadow::get_type(),
+			array(
+				'name'     => 'text_shadow',
+				'selector' => '{{WRAPPER}} .uewtk-elementor-button',
+			)
+		);
+
+		$this->start_controls_tabs( 'tabs_button_style' );
+
+		$this->start_controls_tab(
+			'tab_button_normal',
+			array(
+				'label' => __( 'Normal', 'unique-elementor-widget-toolkit' ),
+			)
+		);
+
+		$this->add_control(
+			'button_text_color',
+			array(
+				'label'     => __( 'Text Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-elementor-button' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-elementor-button svg' => 'color: {{VALUE}};',
 				),
 			)
 		);
-        
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'     => 'background',
+				'label'    => __( 'Background', 'unique-elementor-widget-toolkit' ),
+				'types'    => array( 'classic', 'gradient' ),
+				'exclude'  => array( 'image' ),
+				'selector' => '{{WRAPPER}} .uewtk-elementor-button,{{WRAPPER}} .uewtk-elementor-button-hover-style-skewFill:before,
+								{{WRAPPER}} .uewtk-elementor-button-hover-style-flipSlide::before',
+			)
+		);
         
 
         $this->end_controls_section();
     }
 
     public function get_style_depends(): array {
-		return [ 'uewtk-button-css', 'uewtk-icons' ,'uewtk-editor-style' ];
+		return [ 'uewtk-button-css', 'uewtk-icons' ,'uewtk-editor-style', 'uewtk-hover-effect' ];
 	}
 
     public function get_script_depends(): array {
