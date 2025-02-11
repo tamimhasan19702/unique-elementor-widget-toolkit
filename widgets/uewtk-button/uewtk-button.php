@@ -215,8 +215,8 @@ class Unique_Button extends Widget_Base {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .xpro-align-icon-right .xpro-elementor-button-media' => 'margin-left: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .xpro-align-icon-left .xpro-elementor-button-media'  => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .uewtk-align-icon-right .uewtk-elementor-button-media' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .uewtk-align-icon-left .uewtk-elementor-button-media'  => 'margin-right: {{SIZE}}{{UNIT}};',
 				),
 				'condition' => array(
 					'icon[value]!' => '',
@@ -508,7 +508,7 @@ class Unique_Button extends Widget_Base {
 			Group_Control_Border::get_type(),
 			array(
 				'name'      => 'border',
-				'selector'  => '{{WRAPPER}} .unique-elementor-button',
+				'selector'  => '{{WRAPPER}} .uewtk-elementor-button',
 				'separator' => 'before',
 			)
 		);
@@ -516,11 +516,11 @@ class Unique_Button extends Widget_Base {
 		$this->add_responsive_control(
 			'border_radius',
 			array(
-				'label'      => __( 'Border Radius', 'unique-elementor-addons' ),
+				'label'      => __( 'Border Radius', 'unique-elementor-widget-toolkit' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .unique-elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .uewtk-elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -529,25 +529,161 @@ class Unique_Button extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'button_box_shadow',
-				'selector' => '{{WRAPPER}} .unique-elementor-button',
+				'selector' => '{{WRAPPER}} .uewtk-elementor-button',
 			)
 		);
 
 		$this->add_responsive_control(
 			'button_padding',
 			array(
-				'label'      => __( 'Padding', 'unique-elementor-addons' ),
+				'label'      => __( 'Padding', 'unique-elementor-widget-toolkit' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .unique-elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .uewtk-elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
 
+		$this->end_controls_tab();
 		$this->end_controls_section();
+		
+
+		$this->start_controls_section(
+			'section_style_icon',
+			array(
+				'label'     => __( 'Icon', 'unique-elementor-widget-toolkit' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'icon[value]!' => '',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			array(
+				'label'      => __( 'Size', 'unique-elementor-widget-toolkit' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 5,
+						'max' => 300,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .uewtk-elementor-button-media > i'   => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .uewtk-elementor-button-media > svg' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .uewtk-elementor-button-media'       => 'min-width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_bg_size',
+			array(
+				'label'      => __( 'Background Size', 'unique-elementor-widget-toolkit' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 5,
+						'max' => 500,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .uewtk-elementor-button-media' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_color',
+			array(
+				'label'     => __( 'Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-elementor-button-media > i'   => 'color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-elementor-button-media > svg' => 'fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'     => 'icon_background',
+				'label'    => __( 'Background', 'unique-elementor-widget-toolkit' ),
+				'types'    => array( 'classic', 'gradient' ),
+				'exclude'  => array( 'image' ),
+				'selector' => '{{WRAPPER}} .uewtk-elementor-button-media',
+			)
+		);
 
 
+		
+
+		$this->add_control(
+			'icon_hover_color',
+			array(
+				'label'     => __( 'Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-elementor-button:hover .uewtk-elementor-button-media > i, {{WRAPPER}} .uewtk-elementor-button:focus .uewtk-elementor-button-media > i'     => 'color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-elementor-button:hover .uewtk-elementor-button-media > svg, {{WRAPPER}} .uewtk-elementor-button:focus .uewtk-elementor-button-media > svg' => 'fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'     => 'icon_background_hover',
+				'label'    => __( 'Background', 'unique-elementor-widget-toolkit' ),
+				'types'    => array( 'classic', 'gradient' ),
+				'exclude'  => array( 'image' ),
+				'selector' => '{{WRAPPER}} .uewtk-elementor-button:hover .uewtk-elementor-button-media, {{WRAPPER}} .uewtk-elementor-button:focus .uewtk-elementor-button-media',
+			)
+		);
+
+		$this->add_control(
+			'icon_border_hover_color',
+			array(
+				'label'     => __( 'Border Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'condition' => array(
+					'icon_border!' => '',
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-elementor-button:hover .uewtk-elementor-button-media, {{WRAPPER}} .uewtk-elementor-button:focus .uewtk-elementor-button-media' => 'border-color: {{VALUE}};',
+				),
+			)
+		);
+
+	
+		
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'      => 'icon_border',
+				'selector'  => '{{WRAPPER}} .uewtk-elementor-button-media',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_border_radius',
+			array(
+				'label'      => __( 'Border Radius', 'unique-elementor-widget-toolkit' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .uewtk-elementor-button-media' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
         
 
         $this->end_controls_section();

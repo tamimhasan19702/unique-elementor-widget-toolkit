@@ -40,6 +40,7 @@ add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'editor_enque
 
 // add filters
 add_filter('plugin_action_links_' . UEWTK_BASE , [$this, 'plugin_action_links']);
+add_filter('elementor/icons_manager/additional_tabs', [$this, 'uewtk_add_custom_icons_tab']);
 
 $this->add_page_settings_controls();
     }
@@ -62,7 +63,7 @@ $this->add_page_settings_controls();
      */
     public function widget_scripts() {
 
-        wp_enqueue_style('uewtk-icons', UEWTK_ASSETS .'css/uewtk-icons.css', null, UEWTK_VERSION);
+        wp_enqueue_style('uewtk-icons', UEWTK_ASSETS .'css/flaticon-uewtk.css', null, UEWTK_VERSION);
         wp_enqueue_style('uewtk-hover-effect', UEWTK_ASSETS .'css/uewtk-hover.css', null, UEWTK_VERSION);
 
         // css
@@ -75,7 +76,7 @@ $this->add_page_settings_controls();
     }
 
     public function editor_enqueue_styles() {
-        wp_enqueue_style('uewtk-icons', UEWTK_ASSETS .'css/uewtk-icons.css');
+        wp_enqueue_style('uewtk-icons', UEWTK_ASSETS .'css/flaticon-uewtk.css', null, UEWTK_VERSION);
         wp_enqueue_style('uewtk-editor-style', UEWTK_ASSETS .'css/uewtk-editor.css', null, UEWTK_VERSION);
     }
 
@@ -167,6 +168,63 @@ $this->add_page_settings_controls();
 
     public function uewtk_menu_page() {
         echo '<div id="root"></div>';	
+    }
+
+
+    public function uewtk_add_custom_icons_tab( $tabs = [] ) {
+        $flat_icons = [
+            'flaticon-concentration',
+            'flaticon-sharing',
+            'flaticon-diagonal',
+            'flaticon-search',
+            'flaticon-phone-book',
+            'flaticon-menu',
+            'flaticon-cooperation',
+            'flaticon-connections',
+            'flaticon-right-arrow',
+            'flaticon-merging',
+            'flaticon-quotes',
+            'flaticon-next-button',
+            'flaticon-geometric',
+            'flaticon-geometric-1',
+            'flaticon-geometric-2',
+            'flaticon-geometric-3',
+            'flaticon-geometric-4',
+            'flaticon-triangle',
+            'flaticon-geometric-5',
+            'flaticon-3d-shapes',
+            'flaticon-geometric-6',
+            'flaticon-geometric-7',
+            'flaticon-geometric-8',
+            'flaticon-megaphone',
+            'flaticon-idea',
+            'flaticon-contract',
+            'flaticon-idea-1',
+            'flaticon-customer-feedback',
+            'flaticon-solution',
+            'flaticon-flag',
+            'flaticon-telemarketer',
+            'flaticon-networking',
+            'flaticon-computer',
+            'flaticon-vulnerability',
+            'flaticon-half',
+            'flaticon-map-location',
+            'flaticon-chat',
+            'flaticon-call',
+            'flaticon-quotation-marks',
+        ];
+
+        $tabs['uewtk-custom-icons'] = [
+            'name' => 'uewtk-custom-icons',
+            'label' => esc_html__( 'UEWTK Custom Icons', 'unique-elementor-widget-toolkit' ),
+            'labelIcon' => 'flaticon-sharing',
+            'prefix' => '',
+            'displayPrefix' => 'uewtk-',
+            'url' => plugins_url( '/', __FILE__ ) . 'assets/css/flaticon-uewtk.css',
+            'icons' => $flat_icons,
+            'ver' => '1.0.0'
+        ];
+        return $tabs;
     }
 
 
