@@ -3,7 +3,6 @@
 namespace UniqueElementorToolkit;
 
 use UniqueElementorToolkit\PageSettings\Page_Settings;
-use UniqueElementorToolkit\Widgets\Unique_Cool_Card;
 use UniqueElementorToolkit\Widgets\Unique_Button;
 
 
@@ -97,11 +96,9 @@ $this->add_page_settings_controls();
         
 
         require_once( __DIR__ . '/widgets/uewtk-button/uewtk-button.php' );
-        require_once( __DIR__ . '/widgets/uewtk-cool-card/uewtk-cool-card.php' );
-      
-
+       
      
-        $widgets_manager->register( new Unique_Cool_Card() );
+        
         $widgets_manager->register( new Unique_Button() );
        
     }
