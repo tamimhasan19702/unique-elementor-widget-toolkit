@@ -1,190 +1,68 @@
-/** @format */
+/**
+ * Basic button styles
+ *
+ * @format
+ */
 
-.uewtk-bubbly-button {
-  font-family: "Helvetica", "Arial", sans-serif;
+.uewtk-elementor-button {
   display: inline-block;
-  font-size: 1em;
-  padding: 1em 2em;
-  margin-top: 100px;
-  margin-bottom: 60px;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: var(--main);
-  color: var(--light);
-  border-radius: 4px;
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none; /* Remove underline for links */
   border: none;
-  cursor: pointer;
-  position: relative;
+  border-radius: 5px; /* Rounded corners */
+  background-color: #007bff; /* Primary button color */
+  color: #ffffff; /* Text color */
   transition:
-    transform ease-in 0.1s,
-    box-shadow ease-in 0.25s;
-  box-shadow: 0 2px 25px rgba(var(--main), 0.5);
+    background-color 0.3s ease,
+    transform 0.3s ease; /* Smooth transition for hover effects */
 }
 
-.uewtk-button-icon {
-  font-size: 1rem;
-  color: var(--light);
+.uewtk-button-text {
+  font-family: "Kanit", "Open Sans", Roboto, Helvetica, Arial, sans-serif;
+  text-decoration: none;
 }
 
-.uewtk-bubbly-button:focus {
-  outline: 0;
+/* Hover effects */
+.uewtk-elementor-button:hover {
+  color: #fff;
+  background-color: #0056b3; /* Darker shade for hover */
+  transform: translateY(-2px); /* Slight lift effect */
 }
 
-.uewtk-bubbly-button:before,
-.uewtk-bubbly-button:after {
-  position: absolute;
-  content: "";
-  display: block;
-  width: 140%;
-  height: 100%;
-  left: -20%;
-  z-index: -1000;
-  transition: all ease-in-out 0.5s;
-  background-repeat: no-repeat;
+/* Icon alignment */
+.uewtk-align-icon-left .uewtk-elementor-button-inner {
+  display: flex;
+  align-items: center;
 }
 
-.uewtk-bubbly-button:before {
-  display: none;
-  top: -75%;
-  background-image: radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, transparent 20%, var(--main) 20%, transparent 30%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, transparent 10%, var(--main) 15%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%);
-  background-size:
-    10% 10%,
-    20% 20%,
-    15% 15%,
-    20% 20%,
-    18% 18%,
-    10% 10%,
-    15% 15%,
-    10% 10%,
-    18% 18%;
+.uewtk-align-icon-left .uewtk-elementor-button-media {
+  margin-right: 8px; /* Space between icon and text */
 }
 
-.uewtk-bubbly-button:after {
-  display: none;
-  bottom: -75%;
-  background-image: radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, transparent 10%, var(--main) 15%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%),
-    radial-gradient(circle, var(--main) 20%, transparent 20%);
-  background-size:
-    15% 15%,
-    20% 20%,
-    18% 18%,
-    20% 20%,
-    15% 15%,
-    10% 10%,
-    20% 20%;
+.uewtk-align-icon-right .uewtk-elementor-button-inner {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse; /* Reverse order for right alignment */
 }
 
-.uewtk-bubbly-button:active {
-  transform: scale(0.9);
-  background-color: #e60074;
-  box-shadow: 0 2px 25px rgba(var(--main), 0.2);
+.uewtk-align-icon-right .uewtk-elementor-button-media {
+  margin-left: 8px; /* Space between icon and text */
 }
 
-.uewtk-bubbly-button.uewtk-animate:before {
-  display: block;
-  animation: uewtk-topBubbles ease-in-out 0.75s forwards;
+/* Animation classes (optional) */
+.uewtk-button-2d-animation {
+  /* Add specific styles for 2D animation if needed */
 }
 
-.uewtk-bubbly-button.uewtk-animate:after {
-  display: block;
-  animation: uewtk-bottomBubbles ease-in-out 0.75s forwards;
+.uewtk-button-bg-animation {
+  /* Add specific styles for background animation if needed */
 }
 
-@keyframes uewtk-topBubbles {
-  0% {
-    background-position:
-      5% 90%,
-      10% 90%,
-      10% 90%,
-      15% 90%,
-      25% 90%,
-      25% 90%,
-      40% 90%,
-      55% 90%,
-      70% 90%;
-  }
-  50% {
-    background-position:
-      0% 80%,
-      0% 20%,
-      10% 40%,
-      20% 0%,
-      30% 30%,
-      22% 50%,
-      50% 50%,
-      65% 20%,
-      90% 30%;
-  }
-  100% {
-    background-position:
-      0% 70%,
-      0% 10%,
-      10% 30%,
-      20% -10%,
-      30% 20%,
-      22% 40%,
-      50% 40%,
-      65% 10%,
-      90% 20%;
-    background-size:
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0% 0%;
-  }
+.uewtk-elementor-button-animation-none {
+  /* No animation styles */
 }
 
-@keyframes uewtk-bottomBubbles {
-  0% {
-    background-position:
-      10% -10%,
-      30% 10%,
-      55% -10%,
-      70% -10%,
-      85% -10%,
-      70% -10%,
-      70% 0%;
-  }
-  50% {
-    background-position:
-      0% 80%,
-      20% 80%,
-      45% 60%,
-      60% 100%,
-      75% 70%,
-      95% 60%,
-      105% 0%;
-  }
-  100% {
-    background-position:
-      0% 90%,
-      20% 90%,
-      45% 70%,
-      60% 110%,
-      75% 80%,
-      95% 70%,
-      110% 10%;
-    background-size:
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0% 0%,
-      0% 0%;
-  }
-}
+/* Additional styles for unique animations can be added here */

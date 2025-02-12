@@ -12,7 +12,7 @@
   background-color: var(--primary-color);
   color: var(--secondary-color);
   font-size: 8px;
-  padding: 3px 4px;
+  padding: 3px 4px !important;
   border-radius: 3px;
   line-height: 3px;
   font-family: "Kanit", "Open Sans", Roboto, Helvetica, Arial, sans-serif;

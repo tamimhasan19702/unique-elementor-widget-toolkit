@@ -622,9 +622,6 @@ class Unique_Button extends Widget_Base {
 			)
 		);
 
-
-		
-
 		$this->add_control(
 			'icon_hover_color',
 			array(
@@ -662,7 +659,6 @@ class Unique_Button extends Widget_Base {
 			)
 		);
 
-	
 		
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
@@ -684,7 +680,6 @@ class Unique_Button extends Widget_Base {
 				),
 			)
 		);
-        
 
         $this->end_controls_section();
     }
