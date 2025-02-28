@@ -78,6 +78,7 @@ class Unique_Elementor_Widget_Toolkit
 
         // js
         wp_enqueue_script('uewtk-button-js', UEWTK_ASSETS . 'widgets-js/uewtk-button.js', ['jquery'], UEWTK_VERSION, true);
+        wp_enqueue_script('uewtk-before-after-js', UEWTK_ASSETS . 'widgets-js/uewtk-before-after.js', ['jquery'], UEWTK_VERSION, true);
 
     }
 
