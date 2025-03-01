@@ -15,9 +15,7 @@
   border-radius: 5px; /* Rounded corners */
   background-color: #007bff; /* Primary button color */
   color: #ffffff; /* Text color */
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease; /* Smooth transition for hover effects */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
 }
 
 .uewtk-button-text {
