@@ -4,7 +4,7 @@ namespace UniqueElementorToolkit;
 
 use UniqueElementorToolkit\PageSettings\Page_Settings;
 use UniqueElementorToolkit\Widgets\Unique_Button;
-use UniqueElementorToolkit\Widgets\Unique_audio_player;
+use UniqueElementorToolkit\Widgets\Unique_Before_After;
 
 
 class Unique_Elementor_Widget_Toolkit
@@ -74,11 +74,12 @@ class Unique_Elementor_Widget_Toolkit
 
         // css
         wp_enqueue_style('uewtk-button-css', UEWTK_ASSETS . 'widgets-css/uewtk-button.css', null, UEWTK_VERSION);
-
+        wp_enqueue_style('uewtk-before-after-css', UEWTK_ASSETS . 'widgets-css/uewtk-before-after.css', null, UEWTK_VERSION);
 
 
         // js
         wp_enqueue_script('uewtk-button-js', UEWTK_ASSETS . 'widgets-js/uewtk-button.js', ['jquery'], UEWTK_VERSION, true);
+        wp_enqueue_script('uewtk-before-after-js', UEWTK_ASSETS . 'widgets-js/uewtk-before-after.js', ['jquery'], UEWTK_VERSION, true);
 
 
     }
@@ -109,13 +110,12 @@ class Unique_Elementor_Widget_Toolkit
 
 
         require_once(__DIR__ . '/widgets/uewtk-button/uewtk-button.php');
-        require_once(__DIR__ . '/widgets/uewtk-audio-player/uewtk-audio.player.php');
-
+        require_once(__DIR__ . '/widgets/uewtk-before-after/uewtk-before-after.php');
 
 
 
         $widgets_manager->register(new Unique_Button());
-        $widgets_manager->register(new Unique_audio_player());
+        $widgets_manager->register(new Unique_Before_After());
 
 
     }
