@@ -349,7 +349,7 @@ class Unique_Before_After extends Widget_Base {
 				),
 				'render_type' => 'template',
 				'selectors'   => array(
-					'{{WRAPPER}} .uewtk-compare-wrapper, {{WRAPPER}} .uewtk-compare-item img' => 'height: {{SIZE}}{{UNIT}}',
+					' {{WRAPPER}} .uewtk-compare-container,{{WRAPPER}} .uewtk-compare-wrapper, {{WRAPPER}} .uewtk-compare-item img' => 'height: {{SIZE}}{{UNIT}} !important',
 				),
 			)
 		);
@@ -366,6 +366,486 @@ class Unique_Before_After extends Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'section_label_style',
+			array(
+				'label' => __( 'Label', 'unique-elementor-widget-toolkit' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'label_typography',
+				'label'    => __( 'Typography', 'unique-elementor-widget-toolkit' ),
+				'selector' => '{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label, {{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label',
+			)
+		);
+
+		$this->start_controls_tabs( 'label_before_after_tabs' );
+
+		$this->start_controls_tab(
+			'label_before_tab',
+			array(
+				'label' => __( 'Before', 'unique-elementor-widget-toolkit' ),
+			)
+		);
+
+		$this->add_control(
+			'label_before_hpos',
+			array(
+				'label'                => __( 'Alignment', 'unique-elementor-widget-toolkit' ),
+				'type'                 => Controls_Manager::CHOOSE,
+				'options'              => array(
+					'left'   => array(
+						'title' => __( 'Left', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-h-align-left',
+					),
+					'center' => array(
+						'title' => __( 'Center', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-h-align-center',
+					),
+					'right'  => array(
+						'title' => __( 'Right', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'default'              => 'center',
+				'selectors_dictionary' => array(
+					'left'   => 'left: 0;',
+					'center' => 'left:50%; transform:translateX(-50%);',
+					'right'  => 'right:0;',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label' => '{{VALUE}};',
+				),
+				'toggle'               => false,
+				'condition'            => array(
+					'orientation' => 'vertical',
+				),
+			)
+		);
+
+		$this->add_control(
+			'label_before_vpos',
+			array(
+				'label'                => __( 'Alignment', 'unique-elementor-widget-toolkit' ),
+				'type'                 => Controls_Manager::CHOOSE,
+				'options'              => array(
+					'top'    => array(
+						'title' => __( 'Top', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-v-align-top',
+					),
+					'middle' => array(
+						'title' => __( 'Middle', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-v-align-middle',
+					),
+					'bottom' => array(
+						'title' => __( 'Bottom', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-v-align-bottom',
+					),
+				),
+				'default'              => 'middle',
+				'toggle'               => false,
+				'selectors_dictionary' => array(
+					'top'    => 'top: 0;',
+					'middle' => 'top:50%; transform:translateY(-50%);',
+					'bottom' => 'bottom:0;',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label' => '{{VALUE}};',
+				),
+				'condition'            => array(
+					'orientation!' => 'vertical',
+				),
+			)
+		);
+
+		$this->add_control(
+			'before_color',
+			array(
+				'label'     => __( 'Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'before_bg',
+			array(
+				'label'     => __( 'Background Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'before_border_color',
+			array(
+				'label'     => __( 'Border Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label' => 'border-color: {{VALUE}};',
+				),
+				'condition' => array(
+					'label_border_border!' => '',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'label_after_tab',
+			array(
+				'label' => __( 'After', 'unique-elementor-widget-toolkit' ),
+			)
+		);
+
+		$this->add_control(
+			'label_after_hpos',
+			array(
+				'label'                => __( 'Alignment', 'unique-elementor-widget-toolkit' ),
+				'type'                 => Controls_Manager::CHOOSE,
+				'options'              => array(
+					'left'   => array(
+						'title' => __( 'Left', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-h-align-left',
+					),
+					'center' => array(
+						'title' => __( 'Center', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-h-align-center',
+					),
+					'right'  => array(
+						'title' => __( 'Right', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'default'              => 'center',
+				'selectors_dictionary' => array(
+					'left'   => 'left: 0;',
+					'center' => 'left:50%; transform:translateX(-50%);',
+					'right'  => 'right:0;',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label' => '{{VALUE}};',
+				),
+				'toggle'               => false,
+				'condition'            => array(
+					'orientation' => 'vertical',
+				),
+			)
+		);
+
+		$this->add_control(
+			'label_after_vpos',
+			array(
+				'label'                => __( 'Alignment', 'unique-elementor-widget-toolkit' ),
+				'type'                 => Controls_Manager::CHOOSE,
+				'options'              => array(
+					'top'    => array(
+						'title' => __( 'Top', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-v-align-top',
+					),
+					'middle' => array(
+						'title' => __( 'Middle', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-v-align-middle',
+					),
+					'bottom' => array(
+						'title' => __( 'Bottom', 'unique-elementor-widget-toolkit' ),
+						'icon'  => 'eicon-v-align-bottom',
+					),
+				),
+				'default'              => 'middle',
+				'toggle'               => false,
+				'selectors_dictionary' => array(
+					'top'    => 'top: 0;',
+					'middle' => 'top:50%; transform:translateY(-50%);',
+					'bottom' => 'bottom:0;',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label' => '{{VALUE}};',
+				),
+				'condition'            => array(
+					'orientation!' => 'vertical',
+				),
+			)
+		);
+
+		$this->add_control(
+			'after_color',
+			array(
+				'label'     => __( 'Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'after_bg',
+			array(
+				'label'     => __( 'Background Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'after_border_color',
+			array(
+				'label'     => __( 'Border Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label' => 'border-color: {{VALUE}};',
+				),
+				'condition' => array(
+					'label_border_border!' => '',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+
+		$this->end_controls_tabs();
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'      => 'label_border',
+				'selector'  => '{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label, {{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'label_border_radius',
+			array(
+				'label'      => __( 'Border Radius', 'unique-elementor-widget-toolkit' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label, {{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'label_padding',
+			array(
+				'label'      => __( 'Padding', 'unique-elementor-widget-toolkit' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label, {{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'label_margin',
+			array(
+				'label'      => __( 'Margin', 'unique-elementor-widget-toolkit' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-before-label, {{WRAPPER}} .uewtk-compare-overlay .uewtk-compare-after-label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_separator_style',
+			array(
+				'label' => __( 'Separator', 'unique-elementor-widget-toolkit' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'separator_line_size',
+			array(
+				'label'      => __( 'Line Size', 'unique-elementor-widget-toolkit' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 1,
+						'max' => 10,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .uewtk-compare-vertical .uewtk-compare-handle:after, {{WRAPPER}} .uewtk-compare-vertical .uewtk-compare-handle:before'     => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .uewtk-compare-horizontal .uewtk-compare-handle:after, {{WRAPPER}} .uewtk-compare-horizontal .uewtk-compare-handle:before' => 'width: {{SIZE}}{{UNIT}};',
+				),
+				'condition'  => array(
+					'orientation' => array( 'vertical', 'horizontal' ),
+				),
+			)
+		);
+
+		$this->start_controls_tabs( 'separator_tabs' );
+
+		$this->start_controls_tab(
+			'separator_normal_tab',
+			array(
+				'label' => __( 'Normal', 'unique-elementor-widget-toolkit' ),
+			)
+		);
+
+		$this->add_control(
+			'separator_icon_color',
+			array(
+				'label'     => __( 'Icon Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-container .uewtk-compare-handle .uewtk-compare-up-arrow'    => 'border-bottom-color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-compare-container .uewtk-compare-handle .uewtk-compare-down-arrow'  => 'border-top-color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-compare-container .uewtk-compare-handle .uewtk-compare-left-arrow'  => 'border-right-color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-compare-container .uewtk-compare-handle .uewtk-compare-right-arrow' => 'border-left-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'separator_icon_bg',
+			array(
+				'label'     => __( 'Icon Background', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-handle' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'separator_line_color',
+			array(
+				'label'     => __( 'Line Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-handle:after, .uewtk-compare-handle:before' => 'background-color: {{VALUE}};',
+				),
+				'condition' => array(
+					'orientation' => array( 'vertical', 'horizontal' ),
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+
+		$this->start_controls_tab(
+			'separator_hover_tab',
+			array(
+				'label' => __( 'Hover', 'unique-elementor-widget-toolkit' ),
+			)
+		);
+
+		$this->add_control(
+			'separator_icon_hcolor',
+			array(
+				'label'     => __( 'Icon Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-handle:hover .uewtk-compare-up-arrow'    => 'border-bottom-color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-compare-handle:hover .uewtk-compare-down-arrow'  => 'border-top-color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-compare-handle:hover .uewtk-compare-left-arrow'  => 'border-right-color: {{VALUE}};',
+					'{{WRAPPER}} .uewtk-compare-handle:hover .uewtk-compare-right-arrow' => 'border-left-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'separator_icon_hbg',
+			array(
+				'label'     => __( 'Icon Background', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-handle:hover' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'separator_border_hcolor',
+			array(
+				'label'     => __( 'Border Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-handle:hover' => 'border-color: {{VALUE}};',
+				),
+				'condition' => array(
+					'separator_border_border!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
+			'separator_line_hcolor',
+			array(
+				'label'     => __( 'Line Color', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .uewtk-compare-handle:hover::after, .uewtk-compare-handle:hover::before' => 'background-color: {{VALUE}};',
+				),
+				'condition' => array(
+					'orientation' => array( 'vertical', 'horizontal' ),
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'      => 'separator_border',
+				'selector'  => '{{WRAPPER}} .uewtk-compare-handle',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'separator_border_radius',
+			array(
+				'label'      => __( 'Border Radius', 'unique-elementor-widget-toolkit' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .uewtk-compare-handle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+
 
     }
 
