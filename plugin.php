@@ -5,6 +5,7 @@ namespace UniqueElementorToolkit;
 use UniqueElementorToolkit\PageSettings\Page_Settings;
 use UniqueElementorToolkit\Widgets\Unique_Button;
 use UniqueElementorToolkit\Widgets\Unique_Before_After;
+use UniqueElementorToolkit\Widgets\Unique_Post_Grid;
 
 
 class Unique_Elementor_Widget_Toolkit
@@ -111,12 +112,12 @@ class Unique_Elementor_Widget_Toolkit
 
         require_once(__DIR__ . '/widgets/uewtk-button/uewtk-button.php');
         require_once(__DIR__ . '/widgets/uewtk-before-after/uewtk-before-after.php');
-
+require_once( __DIR__ . '/widgets/uewtk-post-grid/uewtk-post-grid.php');
 
 
         $widgets_manager->register(new Unique_Button());
         $widgets_manager->register(new Unique_Before_After());
-
+$widgets_manager->register(new Unique_Post_Grid());
 
     }
 
