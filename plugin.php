@@ -76,11 +76,13 @@ class Unique_Elementor_Widget_Toolkit
         // css
         wp_enqueue_style('uewtk-button-css', UEWTK_ASSETS . 'widgets-css/uewtk-button.css', null, UEWTK_VERSION);
         wp_enqueue_style('uewtk-before-after-css', UEWTK_ASSETS . 'widgets-css/uewtk-before-after.css', null, UEWTK_VERSION);
+        wp_enqueue_style('uewtk-post-grid-css', UEWTK_ASSETS . 'widgets-css/uewtk-post-grid.css', null, UEWTK_VERSION);
 
 
         // js
         wp_enqueue_script('uewtk-button-js', UEWTK_ASSETS . 'widgets-js/uewtk-button.js', ['jquery'], UEWTK_VERSION, true);
         wp_enqueue_script('uewtk-before-after-js', UEWTK_ASSETS . 'widgets-js/uewtk-before-after.js', ['jquery'], UEWTK_VERSION, true);
+        wp_enqueue_script('uewtk-post-grid-js', UEWTK_ASSETS . 'widgets-js/uewtk-post-grid.js', ['jquery'], UEWTK_VERSION, true);
 
 
     }

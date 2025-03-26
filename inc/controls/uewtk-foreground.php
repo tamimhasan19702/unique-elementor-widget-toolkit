@@ -37,7 +37,7 @@ class Uewtk_Foreground extends Group_Control_Base{
 	 *
 	 */
 	public static function get_type() {
-		return 'foreground';
+		return 'uewtk-foreground';
 	}
 
 	/**

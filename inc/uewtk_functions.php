@@ -147,3 +147,30 @@ function uewtk_kses( $raw ) {
 
 	echo wp_kses( $raw, $allowed_tags );
 }
+
+function uewtk_elementor_get_post_types(){
+	$post_types = get_post_types( array( 'public' => true,
+'show_in_nav_menus' => true,
+), 'objects' );
+
+
+
+$post_types = wp_list_pluck( $post_types, 'label', 'name' );
+
+return array_diff_keys( $post_types, array( 'elementor_library', 'attachment') );
+
+}
+
+function uewtk_elementor_get_taxonomies( $args = array(), $output = 'object', $list = true, $diff_key = array() ) {
+
+	$taxonomies = get_taxonomies( $args, $output );
+	if ( 'object' === $output && $list ) {
+		$taxonomies = wp_list_pluck( $taxonomies, 'label', 'name' );
+	}
+
+	if ( ! empty( $diff_key ) ) {
+		$taxonomies = array_diff_key( $taxonomies, $diff_key );
+	}
+
+	return $taxonomies;
+}
