@@ -1,6 +1,7 @@
 /** @format */
 
 (function ($) {
+  
   $(document).ready(function () {
     $(".bubbly-button").click(function (e) {
       e.preventDefault();

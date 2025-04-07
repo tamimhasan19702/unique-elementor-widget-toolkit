@@ -104,11 +104,11 @@ class Unique_Post_Grid extends Widget_Base {
 
     protected function uewtk_post_grid_controls(){
 
-        $post_types = \uewtk_elementor_get_post_types();
+        $post_types = uewtk_elementor_get_post_types();
         $post_types['by_id'] = __( 'By ID', 'unique-elementor-widget-toolkit' );
         $post_types['source_dynamic'] = __( 'Dynamic', 'unique-elementor-widget-toolkit' );
 
-        $taxonomies = \uewtk_elementor_get_taxonomies( array( 'show_in_nav_menus' => true ) );
+        $taxonomies = uewtk_elementor_get_taxonomies( array( 'show_in_nav_menus' => true ) );
 
         $this->start_controls_section(
             'section_general',
@@ -158,6 +158,184 @@ class Unique_Post_Grid extends Widget_Base {
 				'frontend_available' => true,
 			)
 		);
+
+
+        $this->add_control(
+			'show_image',
+			array(
+				'label'        => __( 'Show Image', 'unique-elementor-widget-toolkit' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default'      => 'yes',
+				'separator'    => 'before',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Image_Size::get_type(),
+			array(
+				'name'      => 'thumbnail',
+				'exclude'   => array( 'custom' ),
+				'default'   => 'medium',
+				'condition' => array(
+					'show_image' => 'yes',
+				),
+			)
+		);
+
+        $this->add_control(
+			'show_content',
+			array(
+				'label'        => __( 'Show Excerpt', 'unique-elementor-widget-toolkit' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default'      => 'yes',
+			)
+		);
+
+		$this->add_control(
+			'content_length',
+			array(
+				'label'     => __( 'Content Length', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::NUMBER,
+				'min'       => 0,
+				'max'       => 500,
+				'step'      => 5,
+				'default'   => 10,
+				'condition' => array(
+					'show_content' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'show_readmore',
+			array(
+				'label'        => __( 'Show Button', 'unique-elementor-widget-toolkit' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+			)
+		);
+
+        $this->add_control(
+			'readmore_text',
+			array(
+				'label'     => __( 'Button Text', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => __( 'Read More', 'unique-elementor-widget-toolkit' ),
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'condition' => array(
+					'show_readmore' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'show_author',
+			array(
+				'label'        => __( 'Show Author', 'unique-elementor-widget-toolkit' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default'      => 'yes',
+				'separator'    => 'before',
+			)
+		);
+
+		$this->add_control(
+			'author_title',
+			array(
+				'label'     => __( 'Author Title', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => __( 'Posted By', 'unique-elementor-widget-toolkit' ),
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'condition' => array(
+					'show_author' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'show_author_avatar',
+			array(
+				'label'        => __( 'Show Avatar', 'unique-elementor-widget-toolkit' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'return_value' => 'yes',
+				'default'      => 'yes',
+				'condition'    => array(
+					'show_author' => 'yes',
+				),
+			)
+		);
+
+
+        $this->add_control(
+			'show_meta',
+			array(
+				'label'     => __( 'Show Meta', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::SELECT2,
+				'multiple'  => true,
+				'separator' => 'before',
+				'options'   => array(
+					'date'     => __( 'Date', 'unique-elementor-widget-toolkit' ),
+					'category' => __( 'Category', 'unique-elementor-widget-toolkit' ),
+					'comments' => __( 'Comments', 'unique-elementor-widget-toolkit' ),
+				),
+				'default'   => array( 'date' ),
+			)
+		);
+
+		$this->add_control(
+			'date_icon',
+			array(
+				'label'     => __( 'Date Icon', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::ICONS,
+				'default'   => array(
+					'value'   => 'far fa-calendar',
+					'library' => 'regular',
+				),
+				'condition' => array(
+					'show_meta' => 'date',
+				),
+			)
+		);
+
+		$this->add_control(
+			'category_icon',
+			array(
+				'label'     => __( 'Category Icon', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::ICONS,
+				'default'   => array(
+					'value'   => 'far fa-folder',
+					'library' => 'regular',
+				),
+				'condition' => array(
+					'show_meta' => 'category',
+				),
+			)
+		);
+
+		$this->add_control(
+			'comments_icon',
+			array(
+				'label'     => __( 'Comment Icon', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::ICONS,
+				'default'   => array(
+					'value'   => 'far fa-comment-alt',
+					'library' => 'regular',
+				),
+				'condition' => array(
+					'show_meta' => 'comments',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+        
 
        
 

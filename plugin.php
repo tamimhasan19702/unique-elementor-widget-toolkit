@@ -33,14 +33,17 @@ class Unique_Elementor_Widget_Toolkit
 
         // add actions
         add_action('elementor/frontend/after_register_scripts', [$this, 'widget_scripts']);
+        add_action('elementor/preview/enqueue_scripts', [$this, 'widget_scripts']);
         add_action('elementor/widgets/register', [$this, 'register_widgets']);
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'editor_scripts']);
         add_action('elementor/elements/categories_registered', [$this, 'register_category']);
         add_action('admin_enqueue_scripts', [$this, 'uewtk_react_enqueue_scripts']);
+    
         add_action('admin_menu', [$this, 'uewtk_admin_menu']);
         // Register editor style.
         add_action('elementor/editor/after_enqueue_styles', array($this, 'editor_enqueue_styles'));
         add_action('elementor/preview/enqueue_styles', array($this, 'editor_enqueue_styles'));
+        
     
 
 
@@ -100,6 +103,7 @@ class Unique_Elementor_Widget_Toolkit
 
     public function editor_scripts()
     {
+
         add_filter('script_loader_tag', [$this, 'editor_scripts_as_a_module'], 10, 2);
 
     }
