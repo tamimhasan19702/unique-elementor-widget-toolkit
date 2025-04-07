@@ -148,6 +148,14 @@ function uewtk_kses( $raw ) {
 	echo wp_kses( $raw, $allowed_tags );
 }
 
+/**
+ * Retrieves a list of public post types that are shown in navigation menus,
+ * excluding 'elementor_library' and 'attachment'.
+ *
+ * @return array An associative array of post types with their labels as values
+ *               and their names as keys.
+ */
+
 function uewtk_elementor_get_post_types(){
 	$post_types = get_post_types( array( 'public' => true,
 'show_in_nav_menus' => true,
@@ -161,6 +169,18 @@ return array_diff_keys( $post_types, array( 'elementor_library', 'attachment') )
 
 }
 
+/**
+ * Retrieves a list of taxonomies that are shown in navigation menus.
+ *
+ * @param array  $args       Optional. An array of key => value arguments to match against the taxonomy objects.
+ *                            Default empty array.
+ * @param string $output      Optional. The type of output to return. Accepts either 'names', 'objects', or 'object types'.
+ *                            Default 'object'.
+ * @param bool   $list        Optional. Whether to return a list of taxonomy names or objects. Default true.
+ * @param array  $diff_key    Optional. An array of taxonomy names to exclude from the list. Default empty array.
+ *
+ * @return array An associative array of taxonomy names (or objects) with their labels as values and their names as keys.
+ */
 function uewtk_elementor_get_taxonomies( $args = array(), $output = 'object', $list = true, $diff_key = array() ) {
 
 	$taxonomies = get_taxonomies( $args, $output );

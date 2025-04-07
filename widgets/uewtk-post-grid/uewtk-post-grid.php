@@ -138,6 +138,27 @@ class Unique_Post_Grid extends Widget_Base {
 			)
 		);
 
+        $this->add_responsive_control(
+			'column_grid',
+			array(
+				'label'              => __( 'Columns', 'unique-elementor-widget-toolkit' ),
+				'type'               => Controls_Manager::SELECT,
+				'desktop_default'    => '3',
+				'tablet_default'     => '2',
+				'mobile_default'     => '1',
+				'options'            => array(
+					'1' => __( '1', 'unique-elementor-widget-toolkit' ),
+					'2' => __( '2', 'unique-elementor-widget-toolkit' ),
+					'3' => __( '3', 'unique-elementor-widget-toolkit' ),
+					'4' => __( '4', 'unique-elementor-widget-toolkit' ),
+					'5' => __( '5', 'unique-elementor-widget-toolkit' ),
+					'6' => __( '6', 'unique-elementor-widget-toolkit' ),
+				),
+				'render_type'        => 'template',
+				'frontend_available' => true,
+			)
+		);
+
        
 
         $this->end_controls_section();

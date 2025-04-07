@@ -40,6 +40,8 @@ class Unique_Elementor_Widget_Toolkit
         add_action('admin_menu', [$this, 'uewtk_admin_menu']);
         // Register editor style.
         add_action('elementor/editor/after_enqueue_styles', array($this, 'editor_enqueue_styles'));
+        add_action('elementor/preview/enqueue_styles', array($this, 'editor_enqueue_styles'));
+    
 
 
 
@@ -50,13 +52,6 @@ class Unique_Elementor_Widget_Toolkit
         $this->add_page_settings_controls();
     }
 
-
-
-    public function include_files()
-    {
-        require_once UEWTK_DIR_PATH . 'inc/uewtk_functions.php';
-
-    }
 
 
 
@@ -87,6 +82,15 @@ class Unique_Elementor_Widget_Toolkit
 
     }
 
+
+    public function include_files()
+    {
+        require_once UEWTK_DIR_PATH . 'inc/uewtk_functions.php';
+
+    }
+
+
+
     public function editor_enqueue_styles()
     {
         wp_enqueue_style('uewtk-icons', UEWTK_ASSETS . 'css/flaticon-uewtk.css', null, UEWTK_VERSION);
@@ -114,12 +118,12 @@ class Unique_Elementor_Widget_Toolkit
 
         require_once(__DIR__ . '/widgets/uewtk-button/uewtk-button.php');
         require_once(__DIR__ . '/widgets/uewtk-before-after/uewtk-before-after.php');
-require_once( __DIR__ . '/widgets/uewtk-post-grid/uewtk-post-grid.php');
+        require_once( __DIR__ . '/widgets/uewtk-post-grid/uewtk-post-grid.php');
 
 
         $widgets_manager->register(new Unique_Button());
         $widgets_manager->register(new Unique_Before_After());
-$widgets_manager->register(new Unique_Post_Grid());
+        $widgets_manager->register(new Unique_Post_Grid());
 
     }
 
