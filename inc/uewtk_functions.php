@@ -276,6 +276,21 @@ function uewtk_elementor_get_authors_list() {
 }
 
 
+function uewtk_elementor_get_post_orderby_options() {
+	$orderby = array(
+		'ID'            => 'Post ID',
+		'author'        => 'Post Author',
+		'title'         => 'Title',
+		'date'          => 'Date',
+		'modified'      => 'Last Modified Date',
+		'parent'        => 'Parent Id',
+		'rand'          => 'Random',
+		'comment_count' => 'Comment Count',
+		'menu_order'    => 'Menu Order',
+	);
+
+	return $orderby;
+}
 
 
 /**

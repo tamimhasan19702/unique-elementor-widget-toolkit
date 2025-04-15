@@ -335,6 +335,127 @@ class Unique_Post_Grid extends Widget_Base {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'section_query',
+			array(
+				'label' => __( 'Query', 'unique-elementor-widget-toolkit' ),
+			)
+		);
+
+		$this->add_control(
+			'post_type',
+			array(
+				'label'   => __( 'Source', 'unique-elementor-widget-toolkit' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => $post_types,
+				'default' => key( $post_types ),
+			)
+		);
+
+		$this->add_control(
+			'posts_ids',
+			array(
+				'label'       => __( 'Search & Select', 'unique-elementor-widget-toolkit' ),
+				'type'        => 'xpro-select',
+				'options'     => uewtk_elementor_get_query_post_list(),
+				'label_block' => true,
+				'multiple'    => true,
+				'source_name' => 'post_type',
+				'source_type' => 'any',
+				'condition'   => array(
+					'post_type' => 'by_id',
+				),
+			)
+		);
+
+		$this->add_control(
+			'authors',
+			array(
+				'label'       => __( 'Author', 'unique-elementor-widget-toolkit' ),
+				'label_block' => true,
+				'type'        => Controls_Manager::SELECT2,
+				'multiple'    => true,
+				'default'     => array(),
+				'options'     => uewtk_elementor_get_authors_list(),
+				'condition'   => array(
+					'post_type!' => array( 'by_id', 'source_dynamic' ),
+				),
+			)
+		);
+
+		foreach ( $taxonomies as $taxonomy => $object ) {
+			if ( ! isset( $object->object_type[0] ) || ! in_array( $object->object_type[0], array_keys( $post_types ), true ) ) {
+				continue;
+			}
+
+			$this->add_control(
+				$taxonomy . '_ids',
+				array(
+					'label'       => $object->label,
+					'type'        => 'uewtk-taxonomy-select',
+					'label_block' => true,
+					'multiple'    => true,
+					'source_name' => 'taxonomy',
+					'source_type' => $taxonomy,
+					'condition'   => array(
+						'post_type' => $object->object_type,
+					),
+				)
+			);
+		}
+
+		$this->add_control(
+			'post__not_in',
+			array(
+				'label'       => __( 'Exclude', 'unique-elementor-widget-toolkit' ),
+				'type'        => 'xpro-select',
+				'label_block' => true,
+				'multiple'    => true,
+				'source_name' => 'post_type',
+				'source_type' => 'any',
+				'condition'   => array(
+					'post_type!' => array( 'by_id', 'source_dynamic' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'posts_per_page',
+			array(
+				'label'     => __( 'Per Page', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 3,
+				'condition' => array(
+					'post_type!' => array( 'source_dynamic' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'offset',
+			array(
+				'label'     => __( 'Offset', 'unique-elementor-widget-toolkit' ),
+				'type'      => Controls_Manager::NUMBER,
+				'condition' => array(
+					'orderby!'         => 'rand',
+					'show_pagination!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'orderby',
+			array(
+				'label'   => __( 'Order By', 'unique-elementor-widget-toolkit' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => uewtk_elementor_get_post_orderby_options(),
+				'default' => 'date',
+
+			)
+		);
+
+
+
         
 
        
